@@ -18,6 +18,7 @@ format:
     highlight-style: github  # estilo de realce de código
     smooth-scroll: true      # rolagem suave ao clicar no sumário
 editor: visual
+bibliography: referencias.bib
 ---
 
 **APRENDIZADO DE MÁQUINA DE A-Z**  
@@ -101,8 +102,10 @@ ggplot(dados_plot, aes(x = x)) +
   theme_minimal()
 ```
 
-Referência: Hornik, K., Stinchcombe, M. & White, H. (1989). Multilayer feedforward networks are universal approximators. Neural Networks, 2(5), 359-366.
-B – Bagging (Bootstrap Aggregating)
+Referência: [@hornik89]
+
+# B 
+## Bagging (Bootstrap Aggregating)
 Proposto por Breiman (1996), reduz variância ao treinar modelos em múltiplas amostras bootstrap e agregar predições por votação majoritária (classificação) ou média (regressão). A de-correlação entre árvores é crítica para ganhos de precisão.
 Exemplo em R – floresta aleatória com randomForest:
 r
@@ -111,7 +114,10 @@ library(randomForest)
 rf <- randomForest(Species ~ ., data = iris, ntree = 1000, importance = TRUE)
 print(rf$err.rate[1000, "OOB"])
 Referência: Breiman, L. (1996). Bagging predictors. Machine Learning, 24(2), 123-140.
-C – Cross-Validation (CV)
+
+
+# C
+## Cross-Validation (CV)
 Estimador de erro de generalização com viés–variância controlado. O k-fold CV particiona os dados em k subconjuntos mutuamente exclusivos; cada partição é usada uma vez como teste. O nested CV é obrigatório quando há sintonia de hiper-parâmetros para evitar otimismo de desempenho (Cawley & Talbot, 2010).
 Exemplo em R – validação cruzada aninhada com caret:
 r
@@ -120,7 +126,9 @@ library(caret)
 tc <- trainControl(method = "repeatedcv", number = 10, repeats = 5, search = "grid")
 fit <- train(Class ~ ., data = Sonar, method = "svmRadial", tuneLength = 15, trControl = tc)
 Referência: Cawley, G. C. & Talbot, N. L. C. (2010). On over-fitting in model selection and subsequent selection bias in performance evaluation. JMLR, 11, 2079-2107.
-D – Decision Trees (Árvores de Decisão)
+
+# D
+## Decision Trees (Árvores de Decisão)
 Modelos simbólicos que particionam recursivamente o espaço de preditores via medidas de impureza (Gini, entropia ou erro de classificação). A complexidade é controlada por poda cost-complexity (cp) ou restrições de profundidade.
 Exemplo em R – árvore CART com rpart:
 r
@@ -128,7 +136,9 @@ Copy
 library(rpart)
 arvore <- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis, method = "class", cp = 0.01)
 rpart.plot::rpart.plot(arvore)
-E – Ensemble Learning
+
+# E
+## Ensemble Learning
 Princípio de combinar preditores fracos para formar um preditor forte. Além de bagging e boosting, stacking (Wolpert, 1992) usa um meta-modelo para ponderar especialistas de base. Divergência entre componentes é essencial (Kuncheva & Whitaker, 2003).
 Exemplo em R – stacking com SuperLearner:
 r
@@ -136,7 +146,9 @@ Copy
 library(SuperLearner)
 SL.library <- c("SL.glm", "SL.ranger", "SL.xgboost")
 fitSL <- SuperLearner(Y = y, X = X, SL.library = SL.library, family = binomial())
-F – Feature Scaling
+
+# F
+## Feature Scaling
 Muitos algoritmos (SVM, redes neurais, k-NN) são sensíveis à magnitude das variáveis. A padronização z-score (μ = 0, σ = 1) ou normalização min-max [0, 1] garante convergência numérica e interpretabilidade de penalidades regulares.
 Exemplo em R – pipeline com recipes:
 r
@@ -146,7 +158,9 @@ receita <- recipe(y ~ ., data = df) %>%
   step_normalize(all_numeric_predictors()) %>%
   prep()
 df_scaled <- bake(receita, new_data = NULL)
-G – Gradient Descent (GD)
+
+# G
+## Gradient Descent (GD)
 Algoritmo de otimização de primeira ordem que atualiza parâmetros na direção oposta ao gradiente da função de perda. GD estocástico (SGD) reduz custo computacional por amostras mini-batch; adaptativos (Adam, RMSprop) ajustam taxas de aprendizado por momentos.
 Exemplo em R – GD manual para regressão linear:
 r
@@ -159,7 +173,9 @@ gd <- function(X, y, lr = 0.01, epochs = 1000) {
   }
   beta
 }
-H – Hyperparameter Tuning
+
+# H
+## Hyperparameter Tuning
 Espaço de configurações externas ao modelo (número de vizinhos, C de SVM, profundidade de árvore) é otimizado via busca em grade, aleatória (Bergstra & Bengio, 2012) ou bayesiana (TPE, Gaussian Process).
 Exemplo em R – bayesiano com mlr3tuning:
 r
@@ -169,14 +185,18 @@ task <- tsk("sonar")
 learner <- lrn("classif.svm", type = "C-classification", kernel = "radial")
 search_space <- ps(C = p_dbl(1e-1, 1e3), sigma = p_dbl(1e-4, 1))
 tuner <- tnr("mbo", n_evals = 30)
-I – Instance-Based Learning
+
+# I
+## Instance-Based Learning
 Família de algoritmos que adiam generalização até o momento da predição, armazenando exemplos (k-NN, kernel regression). A complexidade de predição é O(n), exigindo estruturas de indexação (KD-tree, ball-tree) ou projeções de baixa dimensionalidade.
 Exemplo em R – k-NN com FNN:
 r
 Copy
 library(FNN)
 knn_pred <- knn.reg(train = treino[, -1], test = teste[, -1], y = treino$y, k = 5)
-J – Jaccard Index
+
+# J
+## Jaccard Index
 Medida de similaridade de conjuntos J(A,B) = |A ∩ B| / |A ∪ B|. Útil em dados binários (presença/ausência) ou comunidades em grafos.
 Exemplo em R:
 r
@@ -184,14 +204,18 @@ Copy
 jaccard <- function(a, b) {
   length(intersect(a, b)) / length(union(a, b))
 }
-K – K-Nearest Neighbors (KNN)
+
+# K
+## K-Nearest Neighbors (KNN)
 Classificador não-paramétrico que atribui classe majoritária entre os k vizinhos mais próximos. A escolha de k via CV balancea viés–variância; distâncias ponderadas (IDW) reduzem influência de vizinhos distantes.
 Exemplo em R – tuning de k:
 r
 Copy
 library(caret)
 fit <- train(Class ~ ., data = Sonar, method = "knn", tuneGrid = data.frame(k = seq(1, 25, by = 2)))
-L – Logistic Regression
+
+# L
+## Logistic Regression
 Modelo linear generalizado com função de ligação logit, garantindo probabilidades em [0, 1]. A interpretação via odds-ratio é clássica em epidemiologia. Regularização L1 (lasso) permite seleção de variáveis.
 Exemplo em R – regressão logística com glmnet:
 r
@@ -199,17 +223,23 @@ Copy
 library(glmnet)
 cvfit <- cv.glmnet(x = x, y = y, family = "binomial", alpha = 1)
 coef(cvfit, s = "lambda.min")
-M – Model Overfitting
+
+# M
+## Model Overfitting
 Situação emindo a função de risco empírico ≪ risco verdadeiro, indicando captura de ruído. Diagnóstico via curva de validação (training × validation loss) ou complexidade VC. Soluções: penalização, early stopping, aumento de dados.
 Referência: Vapnik, V. (1998). Statistical Learning Theory. Wiley.
-N – Normalization
+
+# N
+## Normalization
 Transformação que reescala variáveis para intervalo fixo, comum em redes neurais. A normalização por lote (batch norm) acelera convergência reduzindo covariância interna (Ioffe & Szegedy, 2015).
 Exemplo em R – batch norm em keras:
 r
 Copy
 library(keras)
 model %>% layer_batch_normalization()
-O – Outliers
+
+# O
+## Outliers
 Observações que violam pressuposto de distribuição contínua ou homocedasticidade. Detectados via distância de Mahalanobis, LOF ou Isolation Forest. Em modelos lineares, leverage e Cook’s D quantificam influência.
 Exemplo em R:
 r
