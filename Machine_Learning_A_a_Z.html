@@ -290,7 +290,7 @@ window.Quarto = {
   </div>
   <div class="quarto-title-meta-contents">
         <p class="affiliation">
-            Pesquisador em Ciência de Dados - EMBRAPA Pantanal
+            Pesquisador em Ciência de Dados
           </p>
       </div>
   </div>
@@ -490,6 +490,7 @@ Critérios de ligação (single, complete, average) definem a distância entre c
 </div>
 </div>
 <p>Veja o metodo contrário a esse , o <a href="#divisive_hierarchical_clustering">Divisive Hierarchical Clustering</a>.</p>
+<p>Vejam mais detalhes em <span class="citation" data-cites="Han23">(<a href="#ref-Han23" role="doc-biblioref">Han, Kamber, and Pei 2023</a>)</span>, onde o capítulo aborda sobre <code>Cluster Analysis</code> (Análise de Agrupamento) aborda a Agrupamento Hierárquico (Seção 8.3) e explica detalhadamente como o algoritmo aglomerativo (bottom-up) funciona, a construção do dendrograma e a diferença entre os critérios de ligação (single-link, complete-link e average-link).</p>
 </section>
 </section>
 <section id="aic-akaike-information-criterion-critério-de-akaike" class="level2" data-number="1.4">
@@ -844,6 +845,9 @@ Referência: <span class="citation" data-cites="hornik89">(<a href="#ref-hornik8
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-freund97" class="csl-entry" role="listitem">
 Freund, Yoav, and Robert E Schapire. 1997. <span>“A Decision-Theoretic Generalization of on-Line Learning and an Application to Boosting.”</span> <em>Journal of Computer and System Sciences</em> 55 (1): 119–39.
+</div>
+<div id="ref-Han23" class="csl-entry" role="listitem">
+Han, Jiawei, Micheline Kamber, and Jian Pei. 2023. <em>Data Mining: Concepts and Techniques</em>. 4th ed. Cambridge, MA: Elsevier/Morgan Kaufmann. <a href="https://datamineaz.org/textbooks/hanDataMiningConceptual.pdf">https://datamineaz.org/textbooks/hanDataMiningConceptual.pdf</a>.
 </div>
 <div id="ref-hastie09" class="csl-entry" role="listitem">
 Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em>. 2nd ed. Springer. <a href="https://www.sas.upenn.edu/~fdiebold/NoHesitations/BookAdvanced.pdf">https://www.sas.upenn.edu/~fdiebold/NoHesitations/BookAdvanced.pdf</a>.
@@ -1314,7 +1318,7 @@ Samuel, A. L. 1959. <span>“Some Studies in Machine Learning Using the Game of 
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Machine Learning de A a Z"</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Dr. Fernando Machado Haesbaert"</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: "Pesquisador em Ciência de Dados - EMBRAPA Pantanal"</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: "Pesquisador em Ciência de Dados"</span></span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-style:</span><span class="co"> default</span></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> false</span></span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -1435,275 +1439,277 @@ Samuel, A. L. 1959. <span>“Some Studies in Machine Learning Using the Game of 
 <span id="cb23-131"><a href="#cb23-131" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-132"><a href="#cb23-132" aria-hidden="true" tabindex="-1"></a>Veja o metodo contrário a esse , o <span class="co">[</span><span class="ot">Divisive Hierarchical Clustering</span><span class="co">](#divisive_hierarchical_clustering)</span>.</span>
 <span id="cb23-133"><a href="#cb23-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-134"><a href="#cb23-134" aria-hidden="true" tabindex="-1"></a><span class="fu">## AIC – Akaike Information Criterion (Critério de Akaike)</span></span>
-<span id="cb23-135"><a href="#cb23-135" aria-hidden="true" tabindex="-1"></a>Índice de seleção de modelos usado amplamente em modelos estatísticos e regressões generalizadas. Baseia-se na teoria da informação, penalizando a complexidade do modelo para evitar overfitting.  </span>
-<span id="cb23-136"><a href="#cb23-136" aria-hidden="true" tabindex="-1"></a>Calculado como: </span>
-<span id="cb23-137"><a href="#cb23-137" aria-hidden="true" tabindex="-1"></a>$$\text{AIC} = 2k - 2\ln(L)$$  </span>
-<span id="cb23-138"><a href="#cb23-138" aria-hidden="true" tabindex="-1"></a>Onde: $k$ é o número de parâmetros do modelo e $L$ é a verossimilhança máxima do modelo.  </span>
-<span id="cb23-139"><a href="#cb23-139" aria-hidden="true" tabindex="-1"></a>Modelos com menor AIC são preferidos.  </span>
-<span id="cb23-140"><a href="#cb23-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-141"><a href="#cb23-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exemplo: comparação de modelos lineares com AIC: </span></span>
-<span id="cb23-144"><a href="#cb23-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-145"><a href="#cb23-145" aria-hidden="true" tabindex="-1"></a><span class="co"># Repare que removi os sinais de "+" que indicam quebra de linha no console</span></span>
-<span id="cb23-146"><a href="#cb23-146" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>( </span>
-<span id="cb23-147"><a href="#cb23-147" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>),</span>
-<span id="cb23-148"><a href="#cb23-148" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Aqui o tibble permite chamar o x1 criado na linha acima</span></span>
-<span id="cb23-149"><a href="#cb23-149" aria-hidden="true" tabindex="-1"></a>  <span class="at">x2 =</span> x1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>), </span>
-<span id="cb23-150"><a href="#cb23-150" aria-hidden="true" tabindex="-1"></a>  <span class="at">x3 =</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb23-151"><a href="#cb23-151" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
-<span id="cb23-152"><a href="#cb23-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-153"><a href="#cb23-153" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x1 <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span>x2 <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>x3 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">2</span>)</span>
-<span id="cb23-154"><a href="#cb23-154" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb23-155"><a href="#cb23-155" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(df)</span>
-<span id="cb23-156"><a href="#cb23-156" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> df) </span>
-<span id="cb23-157"><a href="#cb23-157" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3, <span class="at">data =</span> df) </span>
-<span id="cb23-158"><a href="#cb23-158" aria-hidden="true" tabindex="-1"></a>aic_values <span class="ot">&lt;-</span> <span class="fu">AIC</span>(model1, model2) </span>
-<span id="cb23-159"><a href="#cb23-159" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(aic_values)</span>
-<span id="cb23-160"><a href="#cb23-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-161"><a href="#cb23-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-162"><a href="#cb23-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-134"><a href="#cb23-134" aria-hidden="true" tabindex="-1"></a>Vejam mais detalhes em <span class="co">[</span><span class="ot">@Han23</span><span class="co">]</span>, onde o capítulo aborda sobre <span class="in">`Cluster Analysis`</span> (Análise de Agrupamento) aborda a Agrupamento Hierárquico (Seção 8.3) e explica detalhadamente como o algoritmo aglomerativo (bottom-up) funciona, a construção do dendrograma e a diferença entre os critérios de ligação (single-link, complete-link e average-link).  </span>
+<span id="cb23-135"><a href="#cb23-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-136"><a href="#cb23-136" aria-hidden="true" tabindex="-1"></a><span class="fu">## AIC – Akaike Information Criterion (Critério de Akaike)</span></span>
+<span id="cb23-137"><a href="#cb23-137" aria-hidden="true" tabindex="-1"></a>Índice de seleção de modelos usado amplamente em modelos estatísticos e regressões generalizadas. Baseia-se na teoria da informação, penalizando a complexidade do modelo para evitar overfitting.  </span>
+<span id="cb23-138"><a href="#cb23-138" aria-hidden="true" tabindex="-1"></a>Calculado como: </span>
+<span id="cb23-139"><a href="#cb23-139" aria-hidden="true" tabindex="-1"></a>$$\text{AIC} = 2k - 2\ln(L)$$  </span>
+<span id="cb23-140"><a href="#cb23-140" aria-hidden="true" tabindex="-1"></a>Onde: $k$ é o número de parâmetros do modelo e $L$ é a verossimilhança máxima do modelo.  </span>
+<span id="cb23-141"><a href="#cb23-141" aria-hidden="true" tabindex="-1"></a>Modelos com menor AIC são preferidos.  </span>
+<span id="cb23-142"><a href="#cb23-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-143"><a href="#cb23-143" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exemplo: comparação de modelos lineares com AIC: </span></span>
+<span id="cb23-146"><a href="#cb23-146" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-147"><a href="#cb23-147" aria-hidden="true" tabindex="-1"></a><span class="co"># Repare que removi os sinais de "+" que indicam quebra de linha no console</span></span>
+<span id="cb23-148"><a href="#cb23-148" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>( </span>
+<span id="cb23-149"><a href="#cb23-149" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>),</span>
+<span id="cb23-150"><a href="#cb23-150" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Aqui o tibble permite chamar o x1 criado na linha acima</span></span>
+<span id="cb23-151"><a href="#cb23-151" aria-hidden="true" tabindex="-1"></a>  <span class="at">x2 =</span> x1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>), </span>
+<span id="cb23-152"><a href="#cb23-152" aria-hidden="true" tabindex="-1"></a>  <span class="at">x3 =</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb23-153"><a href="#cb23-153" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb23-154"><a href="#cb23-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-155"><a href="#cb23-155" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x1 <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span>x2 <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>x3 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">2</span>)</span>
+<span id="cb23-156"><a href="#cb23-156" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-157"><a href="#cb23-157" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(df)</span>
+<span id="cb23-158"><a href="#cb23-158" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> df) </span>
+<span id="cb23-159"><a href="#cb23-159" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3, <span class="at">data =</span> df) </span>
+<span id="cb23-160"><a href="#cb23-160" aria-hidden="true" tabindex="-1"></a>aic_values <span class="ot">&lt;-</span> <span class="fu">AIC</span>(model1, model2) </span>
+<span id="cb23-161"><a href="#cb23-161" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(aic_values)</span>
+<span id="cb23-162"><a href="#cb23-162" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb23-163"><a href="#cb23-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-164"><a href="#cb23-164" aria-hidden="true" tabindex="-1"></a><span class="fu">## Artificial Neural Networks (ANNs)</span></span>
+<span id="cb23-164"><a href="#cb23-164" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-165"><a href="#cb23-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-166"><a href="#cb23-166" aria-hidden="true" tabindex="-1"></a>São sistemas de computação inspirados na arquitetura de neurônios biológicos, formalizados como composições de funções não-lineares $θ(𝐖𝐱 + 𝐛)$, onde $𝐖$ denota matrizes de pesos sinápticos, $θ$ é uma função de ativação (ReLU, sigmóide, tanh) e $b$ viés (bias) . A capacidade de aproximadores universais (HORNIK et al., 1989) garante que ANNs com uma camada oculta suficientemente larga podem modelar qualquer função contínua em domínio compacto.\</span>
-<span id="cb23-167"><a href="#cb23-167" aria-hidden="true" tabindex="-1"></a>Referência: <span class="co">[</span><span class="ot">@hornik89</span><span class="co">]</span>.</span>
-<span id="cb23-168"><a href="#cb23-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-169"><a href="#cb23-169" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exemplo em R: Rede feed-forward para regressão com pacote `{nnet}`</span></span>
+<span id="cb23-166"><a href="#cb23-166" aria-hidden="true" tabindex="-1"></a><span class="fu">## Artificial Neural Networks (ANNs)</span></span>
+<span id="cb23-167"><a href="#cb23-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-168"><a href="#cb23-168" aria-hidden="true" tabindex="-1"></a>São sistemas de computação inspirados na arquitetura de neurônios biológicos, formalizados como composições de funções não-lineares $θ(𝐖𝐱 + 𝐛)$, onde $𝐖$ denota matrizes de pesos sinápticos, $θ$ é uma função de ativação (ReLU, sigmóide, tanh) e $b$ viés (bias) . A capacidade de aproximadores universais (HORNIK et al., 1989) garante que ANNs com uma camada oculta suficientemente larga podem modelar qualquer função contínua em domínio compacto.\</span>
+<span id="cb23-169"><a href="#cb23-169" aria-hidden="true" tabindex="-1"></a>Referência: <span class="co">[</span><span class="ot">@hornik89</span><span class="co">]</span>.</span>
 <span id="cb23-170"><a href="#cb23-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-171"><a href="#cb23-171" aria-hidden="true" tabindex="-1"></a>A rede feed-forward é um tipo de rede neural artificial onde as conexões entre os nós não formam ciclos. Ela é amplamente utilizada para tarefas de regressão e classificação. No R, o pacote <span class="in">`{nnet}`</span> oferece uma maneira simples de implementar redes feed-forward.</span>
+<span id="cb23-171"><a href="#cb23-171" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exemplo em R: Rede feed-forward para regressão com pacote `{nnet}`</span></span>
 <span id="cb23-172"><a href="#cb23-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-175"><a href="#cb23-175" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-176"><a href="#cb23-176" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb23-177"><a href="#cb23-177" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Geração de Dados NÃO-LINEARES: Redes neurais brilham onde a linearidade falha. </span></span>
-<span id="cb23-178"><a href="#cb23-178" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos criar uma função seno com ruído.</span></span>
-<span id="cb23-179"><a href="#cb23-179" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">500</span></span>
-<span id="cb23-180"><a href="#cb23-180" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(N, <span class="dv">0</span>, <span class="dv">10</span>) <span class="co"># Valores entre 0 e 10</span></span>
-<span id="cb23-181"><a href="#cb23-181" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sin</span>(x) <span class="sc">+</span> <span class="fu">rnorm</span>(N, <span class="at">sd =</span> <span class="fl">0.2</span>) <span class="co"># Seno + ruído</span></span>
-<span id="cb23-182"><a href="#cb23-182" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
-<span id="cb23-183"><a href="#cb23-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-184"><a href="#cb23-184" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Separação Treino/Teste (Boas práticas)</span></span>
-<span id="cb23-185"><a href="#cb23-185" aria-hidden="true" tabindex="-1"></a>indices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>N, <span class="at">size =</span> <span class="fl">0.8</span> <span class="sc">*</span> N)</span>
-<span id="cb23-186"><a href="#cb23-186" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> dados[indices, ]</span>
-<span id="cb23-187"><a href="#cb23-187" aria-hidden="true" tabindex="-1"></a>teste  <span class="ot">&lt;-</span> dados[<span class="sc">-</span>indices, ]</span>
-<span id="cb23-188"><a href="#cb23-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-189"><a href="#cb23-189" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Ajuste do Modelo (Regressão)</span></span>
-<span id="cb23-190"><a href="#cb23-190" aria-hidden="true" tabindex="-1"></a><span class="co"># size: neurônios na camada oculta</span></span>
-<span id="cb23-191"><a href="#cb23-191" aria-hidden="true" tabindex="-1"></a><span class="co"># linout = TRUE: essencial para regressão (saída linear, não sigmoide)</span></span>
-<span id="cb23-192"><a href="#cb23-192" aria-hidden="true" tabindex="-1"></a>modelo_ann <span class="ot">&lt;-</span> <span class="fu">nnet</span>(y <span class="sc">~</span> x, </span>
-<span id="cb23-193"><a href="#cb23-193" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> treino, </span>
-<span id="cb23-194"><a href="#cb23-194" aria-hidden="true" tabindex="-1"></a>                   <span class="at">size =</span> <span class="dv">10</span>, </span>
-<span id="cb23-195"><a href="#cb23-195" aria-hidden="true" tabindex="-1"></a>                   <span class="at">linout =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb23-196"><a href="#cb23-196" aria-hidden="true" tabindex="-1"></a>                   <span class="at">decay =</span> <span class="fl">0.001</span>, </span>
-<span id="cb23-197"><a href="#cb23-197" aria-hidden="true" tabindex="-1"></a>                   <span class="at">maxit =</span> <span class="dv">1000</span>, </span>
-<span id="cb23-198"><a href="#cb23-198" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trace =</span> <span class="cn">FALSE</span>) <span class="co"># trace=FALSE limpa o console</span></span>
-<span id="cb23-199"><a href="#cb23-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-200"><a href="#cb23-200" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Avaliação</span></span>
-<span id="cb23-201"><a href="#cb23-201" aria-hidden="true" tabindex="-1"></a>previsoes <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_ann, teste)</span>
-<span id="cb23-202"><a href="#cb23-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-203"><a href="#cb23-203" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo do Erro Quadrático Médio (MSE)</span></span>
-<span id="cb23-204"><a href="#cb23-204" aria-hidden="true" tabindex="-1"></a>mse <span class="ot">&lt;-</span> <span class="fu">mean</span>((teste<span class="sc">$</span>y <span class="sc">-</span> previsoes)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb23-205"><a href="#cb23-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-206"><a href="#cb23-206" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Erro Quadrático Médio (MSE) no teste:"</span>, <span class="fu">round</span>(mse, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb23-173"><a href="#cb23-173" aria-hidden="true" tabindex="-1"></a>A rede feed-forward é um tipo de rede neural artificial onde as conexões entre os nós não formam ciclos. Ela é amplamente utilizada para tarefas de regressão e classificação. No R, o pacote <span class="in">`{nnet}`</span> oferece uma maneira simples de implementar redes feed-forward.</span>
+<span id="cb23-174"><a href="#cb23-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-177"><a href="#cb23-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-178"><a href="#cb23-178" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb23-179"><a href="#cb23-179" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Geração de Dados NÃO-LINEARES: Redes neurais brilham onde a linearidade falha. </span></span>
+<span id="cb23-180"><a href="#cb23-180" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos criar uma função seno com ruído.</span></span>
+<span id="cb23-181"><a href="#cb23-181" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb23-182"><a href="#cb23-182" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(N, <span class="dv">0</span>, <span class="dv">10</span>) <span class="co"># Valores entre 0 e 10</span></span>
+<span id="cb23-183"><a href="#cb23-183" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sin</span>(x) <span class="sc">+</span> <span class="fu">rnorm</span>(N, <span class="at">sd =</span> <span class="fl">0.2</span>) <span class="co"># Seno + ruído</span></span>
+<span id="cb23-184"><a href="#cb23-184" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb23-185"><a href="#cb23-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-186"><a href="#cb23-186" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Separação Treino/Teste (Boas práticas)</span></span>
+<span id="cb23-187"><a href="#cb23-187" aria-hidden="true" tabindex="-1"></a>indices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>N, <span class="at">size =</span> <span class="fl">0.8</span> <span class="sc">*</span> N)</span>
+<span id="cb23-188"><a href="#cb23-188" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> dados[indices, ]</span>
+<span id="cb23-189"><a href="#cb23-189" aria-hidden="true" tabindex="-1"></a>teste  <span class="ot">&lt;-</span> dados[<span class="sc">-</span>indices, ]</span>
+<span id="cb23-190"><a href="#cb23-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-191"><a href="#cb23-191" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Ajuste do Modelo (Regressão)</span></span>
+<span id="cb23-192"><a href="#cb23-192" aria-hidden="true" tabindex="-1"></a><span class="co"># size: neurônios na camada oculta</span></span>
+<span id="cb23-193"><a href="#cb23-193" aria-hidden="true" tabindex="-1"></a><span class="co"># linout = TRUE: essencial para regressão (saída linear, não sigmoide)</span></span>
+<span id="cb23-194"><a href="#cb23-194" aria-hidden="true" tabindex="-1"></a>modelo_ann <span class="ot">&lt;-</span> <span class="fu">nnet</span>(y <span class="sc">~</span> x, </span>
+<span id="cb23-195"><a href="#cb23-195" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> treino, </span>
+<span id="cb23-196"><a href="#cb23-196" aria-hidden="true" tabindex="-1"></a>                   <span class="at">size =</span> <span class="dv">10</span>, </span>
+<span id="cb23-197"><a href="#cb23-197" aria-hidden="true" tabindex="-1"></a>                   <span class="at">linout =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb23-198"><a href="#cb23-198" aria-hidden="true" tabindex="-1"></a>                   <span class="at">decay =</span> <span class="fl">0.001</span>, </span>
+<span id="cb23-199"><a href="#cb23-199" aria-hidden="true" tabindex="-1"></a>                   <span class="at">maxit =</span> <span class="dv">1000</span>, </span>
+<span id="cb23-200"><a href="#cb23-200" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trace =</span> <span class="cn">FALSE</span>) <span class="co"># trace=FALSE limpa o console</span></span>
+<span id="cb23-201"><a href="#cb23-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-202"><a href="#cb23-202" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Avaliação</span></span>
+<span id="cb23-203"><a href="#cb23-203" aria-hidden="true" tabindex="-1"></a>previsoes <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_ann, teste)</span>
+<span id="cb23-204"><a href="#cb23-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-205"><a href="#cb23-205" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo do Erro Quadrático Médio (MSE)</span></span>
+<span id="cb23-206"><a href="#cb23-206" aria-hidden="true" tabindex="-1"></a>mse <span class="ot">&lt;-</span> <span class="fu">mean</span>((teste<span class="sc">$</span>y <span class="sc">-</span> previsoes)<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb23-207"><a href="#cb23-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-208"><a href="#cb23-208" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualização </span></span>
-<span id="cb23-209"><a href="#cb23-209" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Preparação: Adicionar as previsões ao data frame de teste</span></span>
-<span id="cb23-210"><a href="#cb23-210" aria-hidden="true" tabindex="-1"></a>dados_plot <span class="ot">&lt;-</span> teste <span class="sc">%&gt;%</span></span>
-<span id="cb23-211"><a href="#cb23-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predito =</span> previsoes)</span>
-<span id="cb23-212"><a href="#cb23-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-213"><a href="#cb23-213" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Visualização</span></span>
-<span id="cb23-214"><a href="#cb23-214" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_plot, <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
-<span id="cb23-215"><a href="#cb23-215" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Camada dos dados REAIS</span></span>
-<span id="cb23-216"><a href="#cb23-216" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Note que definimos color="Real" DENTRO do aes() para criar a legenda</span></span>
-<span id="cb23-217"><a href="#cb23-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> y, <span class="at">color =</span> <span class="st">"Real"</span>, <span class="at">shape =</span> <span class="st">"Real"</span>), </span>
-<span id="cb23-218"><a href="#cb23-218" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb23-219"><a href="#cb23-219" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Camada dos dados PREVISTOS</span></span>
-<span id="cb23-220"><a href="#cb23-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> predito, <span class="at">color =</span> <span class="st">"Previsto"</span>, <span class="at">shape =</span> <span class="st">"Previsto"</span>), </span>
-<span id="cb23-221"><a href="#cb23-221" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">stroke =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb23-222"><a href="#cb23-222" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Personalização manual para imitar o estilo do R Base (cinza/vermelho e círculo/x)</span></span>
-<span id="cb23-223"><a href="#cb23-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Legenda"</span>, </span>
-<span id="cb23-224"><a href="#cb23-224" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Real"</span> <span class="ot">=</span> <span class="st">"gray"</span>, <span class="st">"Previsto"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
-<span id="cb23-225"><a href="#cb23-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">name =</span> <span class="st">"Legenda"</span>, </span>
-<span id="cb23-226"><a href="#cb23-226" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Real"</span> <span class="ot">=</span> <span class="dv">19</span>, <span class="st">"Previsto"</span> <span class="ot">=</span> <span class="dv">4</span>)) <span class="sc">+</span></span>
-<span id="cb23-227"><a href="#cb23-227" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Títulos e Tema</span></span>
-<span id="cb23-228"><a href="#cb23-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"ANN: Ajuste a Função Seno"</span>,</span>
-<span id="cb23-229"><a href="#cb23-229" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Comparação entre dados reais e aproximação da rede neural"</span>,</span>
-<span id="cb23-230"><a href="#cb23-230" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Valor de Y"</span>,</span>
-<span id="cb23-231"><a href="#cb23-231" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Valor de X"</span>) <span class="sc">+</span></span>
-<span id="cb23-232"><a href="#cb23-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb23-233"><a href="#cb23-233" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-234"><a href="#cb23-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-235"><a href="#cb23-235" aria-hidden="true" tabindex="-1"></a><span class="fu"># B</span></span>
+<span id="cb23-208"><a href="#cb23-208" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Erro Quadrático Médio (MSE) no teste:"</span>, <span class="fu">round</span>(mse, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb23-209"><a href="#cb23-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-210"><a href="#cb23-210" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualização </span></span>
+<span id="cb23-211"><a href="#cb23-211" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Preparação: Adicionar as previsões ao data frame de teste</span></span>
+<span id="cb23-212"><a href="#cb23-212" aria-hidden="true" tabindex="-1"></a>dados_plot <span class="ot">&lt;-</span> teste <span class="sc">%&gt;%</span></span>
+<span id="cb23-213"><a href="#cb23-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predito =</span> previsoes)</span>
+<span id="cb23-214"><a href="#cb23-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-215"><a href="#cb23-215" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Visualização</span></span>
+<span id="cb23-216"><a href="#cb23-216" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_plot, <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb23-217"><a href="#cb23-217" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Camada dos dados REAIS</span></span>
+<span id="cb23-218"><a href="#cb23-218" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Note que definimos color="Real" DENTRO do aes() para criar a legenda</span></span>
+<span id="cb23-219"><a href="#cb23-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> y, <span class="at">color =</span> <span class="st">"Real"</span>, <span class="at">shape =</span> <span class="st">"Real"</span>), </span>
+<span id="cb23-220"><a href="#cb23-220" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb23-221"><a href="#cb23-221" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Camada dos dados PREVISTOS</span></span>
+<span id="cb23-222"><a href="#cb23-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> predito, <span class="at">color =</span> <span class="st">"Previsto"</span>, <span class="at">shape =</span> <span class="st">"Previsto"</span>), </span>
+<span id="cb23-223"><a href="#cb23-223" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">stroke =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb23-224"><a href="#cb23-224" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Personalização manual para imitar o estilo do R Base (cinza/vermelho e círculo/x)</span></span>
+<span id="cb23-225"><a href="#cb23-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Legenda"</span>, </span>
+<span id="cb23-226"><a href="#cb23-226" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Real"</span> <span class="ot">=</span> <span class="st">"gray"</span>, <span class="st">"Previsto"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb23-227"><a href="#cb23-227" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">name =</span> <span class="st">"Legenda"</span>, </span>
+<span id="cb23-228"><a href="#cb23-228" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Real"</span> <span class="ot">=</span> <span class="dv">19</span>, <span class="st">"Previsto"</span> <span class="ot">=</span> <span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb23-229"><a href="#cb23-229" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Títulos e Tema</span></span>
+<span id="cb23-230"><a href="#cb23-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"ANN: Ajuste a Função Seno"</span>,</span>
+<span id="cb23-231"><a href="#cb23-231" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Comparação entre dados reais e aproximação da rede neural"</span>,</span>
+<span id="cb23-232"><a href="#cb23-232" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Valor de Y"</span>,</span>
+<span id="cb23-233"><a href="#cb23-233" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Valor de X"</span>) <span class="sc">+</span></span>
+<span id="cb23-234"><a href="#cb23-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb23-235"><a href="#cb23-235" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb23-236"><a href="#cb23-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-237"><a href="#cb23-237" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bagging (Bootstrap Aggregating)</span></span>
+<span id="cb23-237"><a href="#cb23-237" aria-hidden="true" tabindex="-1"></a><span class="fu"># B</span></span>
 <span id="cb23-238"><a href="#cb23-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-239"><a href="#cb23-239" aria-hidden="true" tabindex="-1"></a>Proposto por Breiman (1996), reduz variância ao treinar modelos em múltiplas amostras bootstrap e agregar predições por votação majoritária (classificação) ou média (regressão). A de-correlação entre árvores é crítica para ganhos de precisão. Exemplo em R – floresta aleatória com randomForest: r Copy library(randomForest) rf <span class="sc">\&lt;</span>- randomForest(Species \~ ., data = iris, ntree = 1000, importance = TRUE) print(rf\$err.rate<span class="sc">\[</span>1000, "OOB"<span class="sc">\]</span>) Referência: Breiman, L. (1996). Bagging predictors. Machine Learning, 24(2), 123-140.</span>
+<span id="cb23-239"><a href="#cb23-239" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bagging (Bootstrap Aggregating)</span></span>
 <span id="cb23-240"><a href="#cb23-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-241"><a href="#cb23-241" aria-hidden="true" tabindex="-1"></a><span class="fu"># C</span></span>
+<span id="cb23-241"><a href="#cb23-241" aria-hidden="true" tabindex="-1"></a>Proposto por Breiman (1996), reduz variância ao treinar modelos em múltiplas amostras bootstrap e agregar predições por votação majoritária (classificação) ou média (regressão). A de-correlação entre árvores é crítica para ganhos de precisão. Exemplo em R – floresta aleatória com randomForest: r Copy library(randomForest) rf <span class="sc">\&lt;</span>- randomForest(Species \~ ., data = iris, ntree = 1000, importance = TRUE) print(rf\$err.rate<span class="sc">\[</span>1000, "OOB"<span class="sc">\]</span>) Referência: Breiman, L. (1996). Bagging predictors. Machine Learning, 24(2), 123-140.</span>
 <span id="cb23-242"><a href="#cb23-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-243"><a href="#cb23-243" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cross-Validation (CV)</span></span>
+<span id="cb23-243"><a href="#cb23-243" aria-hidden="true" tabindex="-1"></a><span class="fu"># C</span></span>
 <span id="cb23-244"><a href="#cb23-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-245"><a href="#cb23-245" aria-hidden="true" tabindex="-1"></a>Estimador de erro de generalização com viés–variância controlado. O k-fold CV particiona os dados em k subconjuntos mutuamente exclusivos; cada partição é usada uma vez como teste. O nested CV é obrigatório quando há sintonia de hiper-parâmetros para evitar otimismo de desempenho (Cawley &amp; Talbot, 2010). Exemplo em R – validação cruzada aninhada com caret: r Copy library(caret) tc <span class="sc">\&lt;</span>- trainControl(method = "repeatedcv", number = 10, repeats = 5, search = "grid") fit <span class="sc">\&lt;</span>- train(Class \~ ., data = Sonar, method = "svmRadial", tuneLength = 15, trControl = tc) Referência: Cawley, G. C. &amp; Talbot, N. L. C. (2010). On over-fitting in model selection and subsequent selection bias in performance evaluation. JMLR, 11, 2079-2107.</span>
+<span id="cb23-245"><a href="#cb23-245" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cross-Validation (CV)</span></span>
 <span id="cb23-246"><a href="#cb23-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-247"><a href="#cb23-247" aria-hidden="true" tabindex="-1"></a><span class="fu"># D</span></span>
+<span id="cb23-247"><a href="#cb23-247" aria-hidden="true" tabindex="-1"></a>Estimador de erro de generalização com viés–variância controlado. O k-fold CV particiona os dados em k subconjuntos mutuamente exclusivos; cada partição é usada uma vez como teste. O nested CV é obrigatório quando há sintonia de hiper-parâmetros para evitar otimismo de desempenho (Cawley &amp; Talbot, 2010). Exemplo em R – validação cruzada aninhada com caret: r Copy library(caret) tc <span class="sc">\&lt;</span>- trainControl(method = "repeatedcv", number = 10, repeats = 5, search = "grid") fit <span class="sc">\&lt;</span>- train(Class \~ ., data = Sonar, method = "svmRadial", tuneLength = 15, trControl = tc) Referência: Cawley, G. C. &amp; Talbot, N. L. C. (2010). On over-fitting in model selection and subsequent selection bias in performance evaluation. JMLR, 11, 2079-2107.</span>
 <span id="cb23-248"><a href="#cb23-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-249"><a href="#cb23-249" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision Trees (Árvores de Decisão)</span></span>
+<span id="cb23-249"><a href="#cb23-249" aria-hidden="true" tabindex="-1"></a><span class="fu"># D</span></span>
 <span id="cb23-250"><a href="#cb23-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-251"><a href="#cb23-251" aria-hidden="true" tabindex="-1"></a>Modelos simbólicos que particionam recursivamente o espaço de preditores via medidas de impureza (Gini, entropia ou erro de classificação). A complexidade é controlada por poda cost-complexity (cp) ou restrições de profundidade. Exemplo em R – árvore CART com rpart: r Copy library(rpart) arvore <span class="sc">\&lt;</span>- rpart(Kyphosis \~ Age + Number + Start, data = kyphosis, method = "class", cp = 0.01) rpart.plot::rpart.plot(arvore)</span>
+<span id="cb23-251"><a href="#cb23-251" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision Trees (Árvores de Decisão)</span></span>
 <span id="cb23-252"><a href="#cb23-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-253"><a href="#cb23-253" aria-hidden="true" tabindex="-1"></a><span class="fu">## Divisive Hierarchical Clustering{#divisive_hierarchical_clustering}</span></span>
-<span id="cb23-254"><a href="#cb23-254" aria-hidden="true" tabindex="-1"></a>Um método de agrupamento hierárquico divisivo emprega uma estratégia de cima para baixo. Ele começa colocando todos os objetos em um cluster, que é a raiz da hierarquia. Em seguida, divide o cluster raiz em vários subclusters menores e particiona recursivamente esses clusters em clusters menores. O processo de particionamento continua até que cada objeto esteja em seu próprio cluster ou até que um critério de parada seja atendido (por exemplo, número desejado de clusters ou distância mínima entre clusters).  </span>
-<span id="cb23-255"><a href="#cb23-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-256"><a href="#cb23-256" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exemplo em R – clustering divisivo com diana</span></span>
-<span id="cb23-259"><a href="#cb23-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-260"><a href="#cb23-260" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster) </span>
-<span id="cb23-261"><a href="#cb23-261" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris) </span>
-<span id="cb23-262"><a href="#cb23-262" aria-hidden="true" tabindex="-1"></a>div_clust <span class="ot">&lt;-</span> <span class="fu">diana</span>(iris[, <span class="sc">-</span><span class="dv">5</span>]) </span>
-<span id="cb23-263"><a href="#cb23-263" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(div_clust) <span class="co"># Dendrograma</span></span>
-<span id="cb23-264"><a href="#cb23-264" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-265"><a href="#cb23-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-266"><a href="#cb23-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-253"><a href="#cb23-253" aria-hidden="true" tabindex="-1"></a>Modelos simbólicos que particionam recursivamente o espaço de preditores via medidas de impureza (Gini, entropia ou erro de classificação). A complexidade é controlada por poda cost-complexity (cp) ou restrições de profundidade. Exemplo em R – árvore CART com rpart: r Copy library(rpart) arvore <span class="sc">\&lt;</span>- rpart(Kyphosis \~ Age + Number + Start, data = kyphosis, method = "class", cp = 0.01) rpart.plot::rpart.plot(arvore)</span>
+<span id="cb23-254"><a href="#cb23-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-255"><a href="#cb23-255" aria-hidden="true" tabindex="-1"></a><span class="fu">## Divisive Hierarchical Clustering{#divisive_hierarchical_clustering}</span></span>
+<span id="cb23-256"><a href="#cb23-256" aria-hidden="true" tabindex="-1"></a>Um método de agrupamento hierárquico divisivo emprega uma estratégia de cima para baixo. Ele começa colocando todos os objetos em um cluster, que é a raiz da hierarquia. Em seguida, divide o cluster raiz em vários subclusters menores e particiona recursivamente esses clusters em clusters menores. O processo de particionamento continua até que cada objeto esteja em seu próprio cluster ou até que um critério de parada seja atendido (por exemplo, número desejado de clusters ou distância mínima entre clusters).  </span>
+<span id="cb23-257"><a href="#cb23-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-258"><a href="#cb23-258" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exemplo em R – clustering divisivo com diana</span></span>
+<span id="cb23-261"><a href="#cb23-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-262"><a href="#cb23-262" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster) </span>
+<span id="cb23-263"><a href="#cb23-263" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris) </span>
+<span id="cb23-264"><a href="#cb23-264" aria-hidden="true" tabindex="-1"></a>div_clust <span class="ot">&lt;-</span> <span class="fu">diana</span>(iris[, <span class="sc">-</span><span class="dv">5</span>]) </span>
+<span id="cb23-265"><a href="#cb23-265" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(div_clust) <span class="co"># Dendrograma</span></span>
+<span id="cb23-266"><a href="#cb23-266" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb23-267"><a href="#cb23-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-268"><a href="#cb23-268" aria-hidden="true" tabindex="-1"></a><span class="fu"># E</span></span>
+<span id="cb23-268"><a href="#cb23-268" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-269"><a href="#cb23-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-270"><a href="#cb23-270" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ensemble Learning</span></span>
+<span id="cb23-270"><a href="#cb23-270" aria-hidden="true" tabindex="-1"></a><span class="fu"># E</span></span>
 <span id="cb23-271"><a href="#cb23-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-272"><a href="#cb23-272" aria-hidden="true" tabindex="-1"></a>Princípio de combinar preditores fracos para formar um preditor forte. Além de bagging e boosting, stacking (Wolpert, 1992) usa um meta-modelo para ponderar especialistas de base. Divergência entre componentes é essencial (Kuncheva &amp; Whitaker, 2003). Exemplo em R – stacking com SuperLearner: r Copy library(SuperLearner) SL.library <span class="sc">\&lt;</span>- c("SL.glm", "SL.ranger", "SL.xgboost") fitSL <span class="sc">\&lt;</span>- SuperLearner(Y = y, X = X, SL.library = SL.library, family = binomial())</span>
+<span id="cb23-272"><a href="#cb23-272" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ensemble Learning</span></span>
 <span id="cb23-273"><a href="#cb23-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-274"><a href="#cb23-274" aria-hidden="true" tabindex="-1"></a><span class="fu"># F</span></span>
+<span id="cb23-274"><a href="#cb23-274" aria-hidden="true" tabindex="-1"></a>Princípio de combinar preditores fracos para formar um preditor forte. Além de bagging e boosting, stacking (Wolpert, 1992) usa um meta-modelo para ponderar especialistas de base. Divergência entre componentes é essencial (Kuncheva &amp; Whitaker, 2003). Exemplo em R – stacking com SuperLearner: r Copy library(SuperLearner) SL.library <span class="sc">\&lt;</span>- c("SL.glm", "SL.ranger", "SL.xgboost") fitSL <span class="sc">\&lt;</span>- SuperLearner(Y = y, X = X, SL.library = SL.library, family = binomial())</span>
 <span id="cb23-275"><a href="#cb23-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-276"><a href="#cb23-276" aria-hidden="true" tabindex="-1"></a><span class="fu">## Feature Scaling</span></span>
+<span id="cb23-276"><a href="#cb23-276" aria-hidden="true" tabindex="-1"></a><span class="fu"># F</span></span>
 <span id="cb23-277"><a href="#cb23-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-278"><a href="#cb23-278" aria-hidden="true" tabindex="-1"></a>Muitos algoritmos (SVM, redes neurais, k-NN) são sensíveis à magnitude das variáveis. A padronização z-score (μ = 0, σ = 1) ou normalização min-max <span class="sc">\[</span>0, 1<span class="sc">\]</span> garante convergência numérica e interpretabilidade de penalidades regulares. Exemplo em R – pipeline com recipes: r Copy library(recipes) receita <span class="sc">\&lt;</span>- recipe(y \~ ., data = df) %<span class="sc">\&gt;</span>% step_normalize(all_numeric_predictors()) %<span class="sc">\&gt;</span>% prep() df_scaled <span class="sc">\&lt;</span>- bake(receita, new_data = NULL)</span>
+<span id="cb23-278"><a href="#cb23-278" aria-hidden="true" tabindex="-1"></a><span class="fu">## Feature Scaling</span></span>
 <span id="cb23-279"><a href="#cb23-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-280"><a href="#cb23-280" aria-hidden="true" tabindex="-1"></a><span class="fu"># G</span></span>
+<span id="cb23-280"><a href="#cb23-280" aria-hidden="true" tabindex="-1"></a>Muitos algoritmos (SVM, redes neurais, k-NN) são sensíveis à magnitude das variáveis. A padronização z-score (μ = 0, σ = 1) ou normalização min-max <span class="sc">\[</span>0, 1<span class="sc">\]</span> garante convergência numérica e interpretabilidade de penalidades regulares. Exemplo em R – pipeline com recipes: r Copy library(recipes) receita <span class="sc">\&lt;</span>- recipe(y \~ ., data = df) %<span class="sc">\&gt;</span>% step_normalize(all_numeric_predictors()) %<span class="sc">\&gt;</span>% prep() df_scaled <span class="sc">\&lt;</span>- bake(receita, new_data = NULL)</span>
 <span id="cb23-281"><a href="#cb23-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-282"><a href="#cb23-282" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gradient Descent (GD)</span></span>
+<span id="cb23-282"><a href="#cb23-282" aria-hidden="true" tabindex="-1"></a><span class="fu"># G</span></span>
 <span id="cb23-283"><a href="#cb23-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-284"><a href="#cb23-284" aria-hidden="true" tabindex="-1"></a>Algoritmo de otimização de primeira ordem que atualiza parâmetros na direção oposta ao gradiente da função de perda. GD estocástico (SGD) reduz custo computacional por amostras mini-batch; adaptativos (Adam, RMSprop) ajustam taxas de aprendizado por momentos. Exemplo em R – GD manual para regressão linear: r Copy gd <span class="sc">\&lt;</span>- function(X, y, lr = 0.01, epochs = 1000) { beta <span class="sc">\&lt;</span>- rep(0, ncol(X)) for(i in 1:epochs) { grad <span class="sc">\&lt;</span>- -2 <span class="sc">\*</span> t(X) %*% (y - X %*% beta) / nrow(X) beta <span class="sc">\&lt;</span>- beta - lr <span class="sc">\*</span> grad } beta }</span>
+<span id="cb23-284"><a href="#cb23-284" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gradient Descent (GD)</span></span>
 <span id="cb23-285"><a href="#cb23-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-286"><a href="#cb23-286" aria-hidden="true" tabindex="-1"></a><span class="fu"># H</span></span>
+<span id="cb23-286"><a href="#cb23-286" aria-hidden="true" tabindex="-1"></a>Algoritmo de otimização de primeira ordem que atualiza parâmetros na direção oposta ao gradiente da função de perda. GD estocástico (SGD) reduz custo computacional por amostras mini-batch; adaptativos (Adam, RMSprop) ajustam taxas de aprendizado por momentos. Exemplo em R – GD manual para regressão linear: r Copy gd <span class="sc">\&lt;</span>- function(X, y, lr = 0.01, epochs = 1000) { beta <span class="sc">\&lt;</span>- rep(0, ncol(X)) for(i in 1:epochs) { grad <span class="sc">\&lt;</span>- -2 <span class="sc">\*</span> t(X) %*% (y - X %*% beta) / nrow(X) beta <span class="sc">\&lt;</span>- beta - lr <span class="sc">\*</span> grad } beta }</span>
 <span id="cb23-287"><a href="#cb23-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-288"><a href="#cb23-288" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hyperparameter Tuning</span></span>
+<span id="cb23-288"><a href="#cb23-288" aria-hidden="true" tabindex="-1"></a><span class="fu"># H</span></span>
 <span id="cb23-289"><a href="#cb23-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-290"><a href="#cb23-290" aria-hidden="true" tabindex="-1"></a>Espaço de configurações externas ao modelo (número de vizinhos, C de SVM, profundidade de árvore) é otimizado via busca em grade, aleatória (Bergstra &amp; Bengio, 2012) ou bayesiana (TPE, Gaussian Process). Exemplo em R – bayesiano com mlr3tuning: r Copy library(mlr3tuning) task <span class="sc">\&lt;</span>- tsk("sonar") learner <span class="sc">\&lt;</span>- lrn("classif.svm", type = "C-classification", kernel = "radial") search_space <span class="sc">\&lt;</span>- ps(C = p_dbl(1e-1, 1e3), sigma = p_dbl(1e-4, 1)) tuner <span class="sc">\&lt;</span>- tnr("mbo", n_evals = 30)</span>
+<span id="cb23-290"><a href="#cb23-290" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hyperparameter Tuning</span></span>
 <span id="cb23-291"><a href="#cb23-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-292"><a href="#cb23-292" aria-hidden="true" tabindex="-1"></a><span class="fu"># I</span></span>
+<span id="cb23-292"><a href="#cb23-292" aria-hidden="true" tabindex="-1"></a>Espaço de configurações externas ao modelo (número de vizinhos, C de SVM, profundidade de árvore) é otimizado via busca em grade, aleatória (Bergstra &amp; Bengio, 2012) ou bayesiana (TPE, Gaussian Process). Exemplo em R – bayesiano com mlr3tuning: r Copy library(mlr3tuning) task <span class="sc">\&lt;</span>- tsk("sonar") learner <span class="sc">\&lt;</span>- lrn("classif.svm", type = "C-classification", kernel = "radial") search_space <span class="sc">\&lt;</span>- ps(C = p_dbl(1e-1, 1e3), sigma = p_dbl(1e-4, 1)) tuner <span class="sc">\&lt;</span>- tnr("mbo", n_evals = 30)</span>
 <span id="cb23-293"><a href="#cb23-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-294"><a href="#cb23-294" aria-hidden="true" tabindex="-1"></a><span class="fu">## Instance-Based Learning</span></span>
+<span id="cb23-294"><a href="#cb23-294" aria-hidden="true" tabindex="-1"></a><span class="fu"># I</span></span>
 <span id="cb23-295"><a href="#cb23-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-296"><a href="#cb23-296" aria-hidden="true" tabindex="-1"></a>Família de algoritmos que adiam generalização até o momento da predição, armazenando exemplos (k-NN, kernel regression). A complexidade de predição é O(n), exigindo estruturas de indexação (KD-tree, ball-tree) ou projeções de baixa dimensionalidade. Exemplo em R – k-NN com FNN: r Copy library(FNN) knn_pred <span class="sc">\&lt;</span>- knn.reg(train = treino<span class="sc">\[</span>, -1<span class="sc">\]</span>, test = teste<span class="sc">\[</span>, -1<span class="sc">\]</span>, y = treino\$y, k = 5)</span>
+<span id="cb23-296"><a href="#cb23-296" aria-hidden="true" tabindex="-1"></a><span class="fu">## Instance-Based Learning</span></span>
 <span id="cb23-297"><a href="#cb23-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-298"><a href="#cb23-298" aria-hidden="true" tabindex="-1"></a><span class="fu"># J</span></span>
+<span id="cb23-298"><a href="#cb23-298" aria-hidden="true" tabindex="-1"></a>Família de algoritmos que adiam generalização até o momento da predição, armazenando exemplos (k-NN, kernel regression). A complexidade de predição é O(n), exigindo estruturas de indexação (KD-tree, ball-tree) ou projeções de baixa dimensionalidade. Exemplo em R – k-NN com FNN: r Copy library(FNN) knn_pred <span class="sc">\&lt;</span>- knn.reg(train = treino<span class="sc">\[</span>, -1<span class="sc">\]</span>, test = teste<span class="sc">\[</span>, -1<span class="sc">\]</span>, y = treino\$y, k = 5)</span>
 <span id="cb23-299"><a href="#cb23-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-300"><a href="#cb23-300" aria-hidden="true" tabindex="-1"></a><span class="fu">## Jaccard Index</span></span>
+<span id="cb23-300"><a href="#cb23-300" aria-hidden="true" tabindex="-1"></a><span class="fu"># J</span></span>
 <span id="cb23-301"><a href="#cb23-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-302"><a href="#cb23-302" aria-hidden="true" tabindex="-1"></a>Medida de similaridade de conjuntos J(A,B) = <span class="sc">\|</span>A ∩ B<span class="sc">\|</span> / <span class="sc">\|</span>A ∪ B<span class="sc">\|</span>. Útil em dados binários (presença/ausência) ou comunidades em grafos. Exemplo em R: r Copy jaccard <span class="sc">\&lt;</span>- function(a, b) { length(intersect(a, b)) / length(union(a, b)) }</span>
+<span id="cb23-302"><a href="#cb23-302" aria-hidden="true" tabindex="-1"></a><span class="fu">## Jaccard Index</span></span>
 <span id="cb23-303"><a href="#cb23-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-304"><a href="#cb23-304" aria-hidden="true" tabindex="-1"></a><span class="fu"># K</span></span>
+<span id="cb23-304"><a href="#cb23-304" aria-hidden="true" tabindex="-1"></a>Medida de similaridade de conjuntos J(A,B) = <span class="sc">\|</span>A ∩ B<span class="sc">\|</span> / <span class="sc">\|</span>A ∪ B<span class="sc">\|</span>. Útil em dados binários (presença/ausência) ou comunidades em grafos. Exemplo em R: r Copy jaccard <span class="sc">\&lt;</span>- function(a, b) { length(intersect(a, b)) / length(union(a, b)) }</span>
 <span id="cb23-305"><a href="#cb23-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-306"><a href="#cb23-306" aria-hidden="true" tabindex="-1"></a><span class="fu">## K-Nearest Neighbors (KNN)</span></span>
+<span id="cb23-306"><a href="#cb23-306" aria-hidden="true" tabindex="-1"></a><span class="fu"># K</span></span>
 <span id="cb23-307"><a href="#cb23-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-308"><a href="#cb23-308" aria-hidden="true" tabindex="-1"></a>Classificador não-paramétrico que atribui classe majoritária entre os k vizinhos mais próximos. A escolha de k via CV balancea viés–variância; distâncias ponderadas (IDW) reduzem influência de vizinhos distantes. Exemplo em R – tuning de k: r Copy library(caret) fit <span class="sc">\&lt;</span>- train(Class \~ ., data = Sonar, method = "knn", tuneGrid = data.frame(k = seq(1, 25, by = 2)))</span>
+<span id="cb23-308"><a href="#cb23-308" aria-hidden="true" tabindex="-1"></a><span class="fu">## K-Nearest Neighbors (KNN)</span></span>
 <span id="cb23-309"><a href="#cb23-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-310"><a href="#cb23-310" aria-hidden="true" tabindex="-1"></a><span class="fu"># L</span></span>
+<span id="cb23-310"><a href="#cb23-310" aria-hidden="true" tabindex="-1"></a>Classificador não-paramétrico que atribui classe majoritária entre os k vizinhos mais próximos. A escolha de k via CV balancea viés–variância; distâncias ponderadas (IDW) reduzem influência de vizinhos distantes. Exemplo em R – tuning de k: r Copy library(caret) fit <span class="sc">\&lt;</span>- train(Class \~ ., data = Sonar, method = "knn", tuneGrid = data.frame(k = seq(1, 25, by = 2)))</span>
 <span id="cb23-311"><a href="#cb23-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-312"><a href="#cb23-312" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logistic Regression</span></span>
+<span id="cb23-312"><a href="#cb23-312" aria-hidden="true" tabindex="-1"></a><span class="fu"># L</span></span>
 <span id="cb23-313"><a href="#cb23-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-314"><a href="#cb23-314" aria-hidden="true" tabindex="-1"></a>Modelo linear generalizado com função de ligação logit, garantindo probabilidades em <span class="sc">\[</span>0, 1<span class="sc">\]</span>. A interpretação via odds-ratio é clássica em epidemiologia. Regularização L1 (lasso) permite seleção de variáveis. Exemplo em R – regressão logística com glmnet: r Copy library(glmnet) cvfit <span class="sc">\&lt;</span>- cv.glmnet(x = x, y = y, family = "binomial", alpha = 1) coef(cvfit, s = "lambda.min")</span>
+<span id="cb23-314"><a href="#cb23-314" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logistic Regression</span></span>
 <span id="cb23-315"><a href="#cb23-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-316"><a href="#cb23-316" aria-hidden="true" tabindex="-1"></a><span class="fu"># M</span></span>
+<span id="cb23-316"><a href="#cb23-316" aria-hidden="true" tabindex="-1"></a>Modelo linear generalizado com função de ligação logit, garantindo probabilidades em <span class="sc">\[</span>0, 1<span class="sc">\]</span>. A interpretação via odds-ratio é clássica em epidemiologia. Regularização L1 (lasso) permite seleção de variáveis. Exemplo em R – regressão logística com glmnet: r Copy library(glmnet) cvfit <span class="sc">\&lt;</span>- cv.glmnet(x = x, y = y, family = "binomial", alpha = 1) coef(cvfit, s = "lambda.min")</span>
 <span id="cb23-317"><a href="#cb23-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-318"><a href="#cb23-318" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model Overfitting</span></span>
+<span id="cb23-318"><a href="#cb23-318" aria-hidden="true" tabindex="-1"></a><span class="fu"># M</span></span>
 <span id="cb23-319"><a href="#cb23-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-320"><a href="#cb23-320" aria-hidden="true" tabindex="-1"></a>Situação emindo a função de risco empírico ≪ risco verdadeiro, indicando captura de ruído. Diagnóstico via curva de validação (training × validation loss) ou complexidade VC. Soluções: penalização, early stopping, aumento de dados. Referência: Vapnik, V. (1998). Statistical Learning Theory. Wiley.</span>
+<span id="cb23-320"><a href="#cb23-320" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model Overfitting</span></span>
 <span id="cb23-321"><a href="#cb23-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-322"><a href="#cb23-322" aria-hidden="true" tabindex="-1"></a><span class="fu"># N</span></span>
+<span id="cb23-322"><a href="#cb23-322" aria-hidden="true" tabindex="-1"></a>Situação emindo a função de risco empírico ≪ risco verdadeiro, indicando captura de ruído. Diagnóstico via curva de validação (training × validation loss) ou complexidade VC. Soluções: penalização, early stopping, aumento de dados. Referência: Vapnik, V. (1998). Statistical Learning Theory. Wiley.</span>
 <span id="cb23-323"><a href="#cb23-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-324"><a href="#cb23-324" aria-hidden="true" tabindex="-1"></a><span class="fu">## Normalization</span></span>
+<span id="cb23-324"><a href="#cb23-324" aria-hidden="true" tabindex="-1"></a><span class="fu"># N</span></span>
 <span id="cb23-325"><a href="#cb23-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-326"><a href="#cb23-326" aria-hidden="true" tabindex="-1"></a>Transformação que reescala variáveis para intervalo fixo, comum em redes neurais. A normalização por lote (batch norm) acelera convergência reduzindo covariância interna (Ioffe &amp; Szegedy, 2015). Exemplo em R – batch norm em keras: r Copy library(keras) model %<span class="sc">\&gt;</span>% layer_batch_normalization()</span>
+<span id="cb23-326"><a href="#cb23-326" aria-hidden="true" tabindex="-1"></a><span class="fu">## Normalization</span></span>
 <span id="cb23-327"><a href="#cb23-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-328"><a href="#cb23-328" aria-hidden="true" tabindex="-1"></a><span class="fu"># O</span></span>
+<span id="cb23-328"><a href="#cb23-328" aria-hidden="true" tabindex="-1"></a>Transformação que reescala variáveis para intervalo fixo, comum em redes neurais. A normalização por lote (batch norm) acelera convergência reduzindo covariância interna (Ioffe &amp; Szegedy, 2015). Exemplo em R – batch norm em keras: r Copy library(keras) model %<span class="sc">\&gt;</span>% layer_batch_normalization()</span>
 <span id="cb23-329"><a href="#cb23-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-330"><a href="#cb23-330" aria-hidden="true" tabindex="-1"></a><span class="fu">## Outliers</span></span>
+<span id="cb23-330"><a href="#cb23-330" aria-hidden="true" tabindex="-1"></a><span class="fu"># O</span></span>
 <span id="cb23-331"><a href="#cb23-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-332"><a href="#cb23-332" aria-hidden="true" tabindex="-1"></a>Observações que violam pressuposto de distribuição contínua ou homocedasticidade. Detectados via distância de Mahalanobis, LOF ou Isolation Forest. Em modelos lineares, leverage e Cook’s D quantificam influência. Exemplo em R: r Copy library(isotree) iso <span class="sc">\&lt;</span>- isolation.forest(df, ntrees = 500) scores <span class="sc">\&lt;</span>- predict(iso, df)</span>
+<span id="cb23-332"><a href="#cb23-332" aria-hidden="true" tabindex="-1"></a><span class="fu">## Outliers</span></span>
 <span id="cb23-333"><a href="#cb23-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-334"><a href="#cb23-334" aria-hidden="true" tabindex="-1"></a><span class="fu"># P</span></span>
+<span id="cb23-334"><a href="#cb23-334" aria-hidden="true" tabindex="-1"></a>Observações que violam pressuposto de distribuição contínua ou homocedasticidade. Detectados via distância de Mahalanobis, LOF ou Isolation Forest. Em modelos lineares, leverage e Cook’s D quantificam influência. Exemplo em R: r Copy library(isotree) iso <span class="sc">\&lt;</span>- isolation.forest(df, ntrees = 500) scores <span class="sc">\&lt;</span>- predict(iso, df)</span>
 <span id="cb23-335"><a href="#cb23-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-336"><a href="#cb23-336" aria-hidden="true" tabindex="-1"></a><span class="fu">## Principal Component Analysis (PCA)</span></span>
+<span id="cb23-336"><a href="#cb23-336" aria-hidden="true" tabindex="-1"></a><span class="fu"># P</span></span>
 <span id="cb23-337"><a href="#cb23-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-338"><a href="#cb23-338" aria-hidden="true" tabindex="-1"></a>Decomposição ortogonal que maximiza variância projetada, equivalente à decomposição em valores singulares (SVD) da matriz centrada. PCA é usada para visualização, ruído filtrado e redução de dimensionalidade antes de algoritmos pesados. Exemplo em R: r Copy pca <span class="sc">\&lt;</span>- prcomp(df, center = TRUE, scale. = TRUE) biplot(pca)</span>
+<span id="cb23-338"><a href="#cb23-338" aria-hidden="true" tabindex="-1"></a><span class="fu">## Principal Component Analysis (PCA)</span></span>
 <span id="cb23-339"><a href="#cb23-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-340"><a href="#cb23-340" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q</span></span>
+<span id="cb23-340"><a href="#cb23-340" aria-hidden="true" tabindex="-1"></a>Decomposição ortogonal que maximiza variância projetada, equivalente à decomposição em valores singulares (SVD) da matriz centrada. PCA é usada para visualização, ruído filtrado e redução de dimensionalidade antes de algoritmos pesados. Exemplo em R: r Copy pca <span class="sc">\&lt;</span>- prcomp(df, center = TRUE, scale. = TRUE) biplot(pca)</span>
 <span id="cb23-341"><a href="#cb23-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-342"><a href="#cb23-342" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q-Learning</span></span>
+<span id="cb23-342"><a href="#cb23-342" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q</span></span>
 <span id="cb23-343"><a href="#cb23-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-344"><a href="#cb23-344" aria-hidden="true" tabindex="-1"></a>Algoritmo de aprendizado por reforço off-policy que estima função Q<span class="sc">\*</span>(s,a) via atualização de Bellman. A convergência é garantida sob visitação infinita de pares (s,a) com taxa de aprendizado decrescente. Exemplo em R – pacote ReinforcementLearning: r Copy library(ReinforcementLearning) data("gridworld") model <span class="sc">\&lt;</span>- ReinforcementLearning(data = gridworld, s = "state", a = "action", r = "reward", s_new = "next_state")</span>
+<span id="cb23-344"><a href="#cb23-344" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q-Learning</span></span>
 <span id="cb23-345"><a href="#cb23-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-346"><a href="#cb23-346" aria-hidden="true" tabindex="-1"></a><span class="fu"># R</span></span>
+<span id="cb23-346"><a href="#cb23-346" aria-hidden="true" tabindex="-1"></a>Algoritmo de aprendizado por reforço off-policy que estima função Q<span class="sc">\*</span>(s,a) via atualização de Bellman. A convergência é garantida sob visitação infinita de pares (s,a) com taxa de aprendizado decrescente. Exemplo em R – pacote ReinforcementLearning: r Copy library(ReinforcementLearning) data("gridworld") model <span class="sc">\&lt;</span>- ReinforcementLearning(data = gridworld, s = "state", a = "action", r = "reward", s_new = "next_state")</span>
 <span id="cb23-347"><a href="#cb23-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-348"><a href="#cb23-348" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regularization</span></span>
+<span id="cb23-348"><a href="#cb23-348" aria-hidden="true" tabindex="-1"></a><span class="fu"># R</span></span>
 <span id="cb23-349"><a href="#cb23-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-350"><a href="#cb23-350" aria-hidden="true" tabindex="-1"></a>Técnica que adiciona penalidade Ω(β) à função de perda, impondo trade-off viés–variância. Ridge (L2) encolhe coeficientes, lasso (L1) promove esparsidade, elastic-net combina ambas. Exemplo em R – elastic-net com glmnet: r Copy cvfit <span class="sc">\&lt;</span>- cv.glmnet(x, y, alpha = 0.5) <span class="sc">\#</span> 0.5 = elastic-net</span>
+<span id="cb23-350"><a href="#cb23-350" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regularization</span></span>
 <span id="cb23-351"><a href="#cb23-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-352"><a href="#cb23-352" aria-hidden="true" tabindex="-1"></a><span class="fu"># S</span></span>
+<span id="cb23-352"><a href="#cb23-352" aria-hidden="true" tabindex="-1"></a>Técnica que adiciona penalidade Ω(β) à função de perda, impondo trade-off viés–variância. Ridge (L2) encolhe coeficientes, lasso (L1) promove esparsidade, elastic-net combina ambas. Exemplo em R – elastic-net com glmnet: r Copy cvfit <span class="sc">\&lt;</span>- cv.glmnet(x, y, alpha = 0.5) <span class="sc">\#</span> 0.5 = elastic-net</span>
 <span id="cb23-353"><a href="#cb23-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-354"><a href="#cb23-354" aria-hidden="true" tabindex="-1"></a><span class="fu">## Support Vector Machines (SVM)</span></span>
+<span id="cb23-354"><a href="#cb23-354" aria-hidden="true" tabindex="-1"></a><span class="fu"># S</span></span>
 <span id="cb23-355"><a href="#cb23-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-356"><a href="#cb23-356" aria-hidden="true" tabindex="-1"></a>Classificador de margem máxima que resolve problema de otimização quadrática convexo. O kernel trick permite espaços de Hilbert de alta dimensão sem custo computacional explícito. Exemplo em R – SVM radial com e1071: r Copy library(e1071) fit <span class="sc">\&lt;</span>- svm(Class \~ ., data = treino, kernel = "radial", cost = 10, gamma = 0.1)</span>
+<span id="cb23-356"><a href="#cb23-356" aria-hidden="true" tabindex="-1"></a><span class="fu">## Support Vector Machines (SVM)</span></span>
 <span id="cb23-357"><a href="#cb23-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-358"><a href="#cb23-358" aria-hidden="true" tabindex="-1"></a><span class="fu"># T</span></span>
+<span id="cb23-358"><a href="#cb23-358" aria-hidden="true" tabindex="-1"></a>Classificador de margem máxima que resolve problema de otimização quadrática convexo. O kernel trick permite espaços de Hilbert de alta dimensão sem custo computacional explícito. Exemplo em R – SVM radial com e1071: r Copy library(e1071) fit <span class="sc">\&lt;</span>- svm(Class \~ ., data = treino, kernel = "radial", cost = 10, gamma = 0.1)</span>
 <span id="cb23-359"><a href="#cb23-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-360"><a href="#cb23-360" aria-hidden="true" tabindex="-1"></a><span class="fu">## Training Set</span></span>
+<span id="cb23-360"><a href="#cb23-360" aria-hidden="true" tabindex="-1"></a><span class="fu"># T</span></span>
 <span id="cb23-361"><a href="#cb23-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-362"><a href="#cb23-362" aria-hidden="true" tabindex="-1"></a>Conjunto de dados usado para estimar parâmetros do modelo. Deve ser representativo da população; técnicas de amostragem estratificada preservam proporções de classe. O tamanho ideal depende da taxa de cobertura do espaço de características (Cover &amp; Hart, 1967).</span>
+<span id="cb23-362"><a href="#cb23-362" aria-hidden="true" tabindex="-1"></a><span class="fu">## Training Set</span></span>
 <span id="cb23-363"><a href="#cb23-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-364"><a href="#cb23-364" aria-hidden="true" tabindex="-1"></a><span class="fu"># U</span></span>
+<span id="cb23-364"><a href="#cb23-364" aria-hidden="true" tabindex="-1"></a>Conjunto de dados usado para estimar parâmetros do modelo. Deve ser representativo da população; técnicas de amostragem estratificada preservam proporções de classe. O tamanho ideal depende da taxa de cobertura do espaço de características (Cover &amp; Hart, 1967).</span>
 <span id="cb23-365"><a href="#cb23-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-366"><a href="#cb23-366" aria-hidden="true" tabindex="-1"></a><span class="fu">## Underfitting</span></span>
+<span id="cb23-366"><a href="#cb23-366" aria-hidden="true" tabindex="-1"></a><span class="fu"># U</span></span>
 <span id="cb23-367"><a href="#cb23-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-368"><a href="#cb23-368" aria-hidden="true" tabindex="-1"></a>Modelo com capacidade insuficiente (alto viés) não captura estrutura dos dados. Indicado por erro de treino elevado. Soluções: aumentar complexidade, adicionar features, reduzir regularização.</span>
+<span id="cb23-368"><a href="#cb23-368" aria-hidden="true" tabindex="-1"></a><span class="fu">## Underfitting</span></span>
 <span id="cb23-369"><a href="#cb23-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-370"><a href="#cb23-370" aria-hidden="true" tabindex="-1"></a><span class="fu"># V</span></span>
+<span id="cb23-370"><a href="#cb23-370" aria-hidden="true" tabindex="-1"></a>Modelo com capacidade insuficiente (alto viés) não captura estrutura dos dados. Indicado por erro de treino elevado. Soluções: aumentar complexidade, adicionar features, reduzir regularização.</span>
 <span id="cb23-371"><a href="#cb23-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-372"><a href="#cb23-372" aria-hidden="true" tabindex="-1"></a><span class="fu">## Validation Set</span></span>
+<span id="cb23-372"><a href="#cb23-372" aria-hidden="true" tabindex="-1"></a><span class="fu"># V</span></span>
 <span id="cb23-373"><a href="#cb23-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-374"><a href="#cb23-374" aria-hidden="true" tabindex="-1"></a>Dados separados do treino para ajuste de hiper-parâmetros, evitando vazamento de informação. Em datasets pequenos, cross-validation interno é preferível.</span>
+<span id="cb23-374"><a href="#cb23-374" aria-hidden="true" tabindex="-1"></a><span class="fu">## Validation Set</span></span>
 <span id="cb23-375"><a href="#cb23-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-376"><a href="#cb23-376" aria-hidden="true" tabindex="-1"></a><span class="fu"># W</span></span>
+<span id="cb23-376"><a href="#cb23-376" aria-hidden="true" tabindex="-1"></a>Dados separados do treino para ajuste de hiper-parâmetros, evitando vazamento de informação. Em datasets pequenos, cross-validation interno é preferível.</span>
 <span id="cb23-377"><a href="#cb23-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-378"><a href="#cb23-378" aria-hidden="true" tabindex="-1"></a><span class="fu">## Weight Initialization</span></span>
+<span id="cb23-378"><a href="#cb23-378" aria-hidden="true" tabindex="-1"></a><span class="fu"># W</span></span>
 <span id="cb23-379"><a href="#cb23-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-380"><a href="#cb23-380" aria-hidden="true" tabindex="-1"></a>Valores iniciais influenciam convergência e qualidade de mínimo. Xavier/Glorot idealiza variância 2/(fan_in + fan_out) para sigmóides; He inicializa com 2/fan_in para ReLU. Exemplo em R – inicialização He no keras: r Copy layer_dense(units = 128, activation = "relu", kernel_initializer = "he_normal")</span>
+<span id="cb23-380"><a href="#cb23-380" aria-hidden="true" tabindex="-1"></a><span class="fu">## Weight Initialization</span></span>
 <span id="cb23-381"><a href="#cb23-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-382"><a href="#cb23-382" aria-hidden="true" tabindex="-1"></a><span class="fu"># X</span></span>
+<span id="cb23-382"><a href="#cb23-382" aria-hidden="true" tabindex="-1"></a>Valores iniciais influenciam convergência e qualidade de mínimo. Xavier/Glorot idealiza variância 2/(fan_in + fan_out) para sigmóides; He inicializa com 2/fan_in para ReLU. Exemplo em R – inicialização He no keras: r Copy layer_dense(units = 128, activation = "relu", kernel_initializer = "he_normal")</span>
 <span id="cb23-383"><a href="#cb23-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-384"><a href="#cb23-384" aria-hidden="true" tabindex="-1"></a><span class="fu">## XGBoost</span></span>
+<span id="cb23-384"><a href="#cb23-384" aria-hidden="true" tabindex="-1"></a><span class="fu"># X</span></span>
 <span id="cb23-385"><a href="#cb23-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-386"><a href="#cb23-386" aria-hidden="true" tabindex="-1"></a>Implementação escalonável de gradient boosting com稀疏数据 (sparsity-aware), regularização L1/L2 em árvores, e paralelização por特征分块. Domina competições tabulares. Exemplo em R: r Copy library(xgboost) dtrain <span class="sc">\&lt;</span>- xgb.DMatrix(data = as.matrix(treino<span class="sc">\[</span>, -1<span class="sc">\]</span>), label = treino\$label) param <span class="sc">\&lt;</span>- list(max_depth = 6, eta = 0.05, subsample = 0.8, colsample_bytree = 0.8, objective = "binary:logistic") bst <span class="sc">\&lt;</span>- xgb.train(param, dtrain, nrounds = 400, watchlist = list(train = dtrain), early_stopping_rounds = 10)</span>
+<span id="cb23-386"><a href="#cb23-386" aria-hidden="true" tabindex="-1"></a><span class="fu">## XGBoost</span></span>
 <span id="cb23-387"><a href="#cb23-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-388"><a href="#cb23-388" aria-hidden="true" tabindex="-1"></a><span class="fu"># Y</span></span>
+<span id="cb23-388"><a href="#cb23-388" aria-hidden="true" tabindex="-1"></a>Implementação escalonável de gradient boosting com稀疏数据 (sparsity-aware), regularização L1/L2 em árvores, e paralelização por特征分块. Domina competições tabulares. Exemplo em R: r Copy library(xgboost) dtrain <span class="sc">\&lt;</span>- xgb.DMatrix(data = as.matrix(treino<span class="sc">\[</span>, -1<span class="sc">\]</span>), label = treino\$label) param <span class="sc">\&lt;</span>- list(max_depth = 6, eta = 0.05, subsample = 0.8, colsample_bytree = 0.8, objective = "binary:logistic") bst <span class="sc">\&lt;</span>- xgb.train(param, dtrain, nrounds = 400, watchlist = list(train = dtrain), early_stopping_rounds = 10)</span>
 <span id="cb23-389"><a href="#cb23-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-390"><a href="#cb23-390" aria-hidden="true" tabindex="-1"></a><span class="fu">## Y-Axis</span></span>
+<span id="cb23-390"><a href="#cb23-390" aria-hidden="true" tabindex="-1"></a><span class="fu"># Y</span></span>
 <span id="cb23-391"><a href="#cb23-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-392"><a href="#cb23-392" aria-hidden="true" tabindex="-1"></a>Nos gráficos de curvas de aprendizado, representa métrica de desempenho (acurácia, AUC, RMSE) ou erro empírico. A análise de gap entre treino e validação revela overfitting/underfitting.</span>
+<span id="cb23-392"><a href="#cb23-392" aria-hidden="true" tabindex="-1"></a><span class="fu">## Y-Axis</span></span>
 <span id="cb23-393"><a href="#cb23-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-394"><a href="#cb23-394" aria-hidden="true" tabindex="-1"></a><span class="fu"># Z</span></span>
+<span id="cb23-394"><a href="#cb23-394" aria-hidden="true" tabindex="-1"></a>Nos gráficos de curvas de aprendizado, representa métrica de desempenho (acurácia, AUC, RMSE) ou erro empírico. A análise de gap entre treino e validação revela overfitting/underfitting.</span>
 <span id="cb23-395"><a href="#cb23-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-396"><a href="#cb23-396" aria-hidden="true" tabindex="-1"></a><span class="fu">## Z-Score</span></span>
+<span id="cb23-396"><a href="#cb23-396" aria-hidden="true" tabindex="-1"></a><span class="fu"># Z</span></span>
 <span id="cb23-397"><a href="#cb23-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-398"><a href="#cb23-398" aria-hidden="true" tabindex="-1"></a>Escore padronizado z = (x − μ)/σ, indicando desvios em unidades de desvio-padrão. Utilizado para detecção de outliers (<span class="sc">\|</span>z<span class="sc">\|</span> <span class="sc">\&gt;</span> 3) e normalização de features. Exemplo em R: r Copy z <span class="sc">\&lt;</span>- scale(df\$x)</span>
+<span id="cb23-398"><a href="#cb23-398" aria-hidden="true" tabindex="-1"></a><span class="fu">## Z-Score</span></span>
 <span id="cb23-399"><a href="#cb23-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-400"><a href="#cb23-400" aria-hidden="true" tabindex="-1"></a>Referências gerais</span>
+<span id="cb23-400"><a href="#cb23-400" aria-hidden="true" tabindex="-1"></a>Escore padronizado z = (x − μ)/σ, indicando desvios em unidades de desvio-padrão. Utilizado para detecção de outliers (<span class="sc">\|</span>z<span class="sc">\|</span> <span class="sc">\&gt;</span> 3) e normalização de features. Exemplo em R: r Copy z <span class="sc">\&lt;</span>- scale(df\$x)</span>
 <span id="cb23-401"><a href="#cb23-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-402"><a href="#cb23-402" aria-hidden="true" tabindex="-1"></a>Bergstra, J. &amp; Bengio, Y. (2012). Random search for hyper-parameter optimization. JMLR, 13, 281-305.</span>
+<span id="cb23-402"><a href="#cb23-402" aria-hidden="true" tabindex="-1"></a>Referências gerais</span>
 <span id="cb23-403"><a href="#cb23-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-404"><a href="#cb23-404" aria-hidden="true" tabindex="-1"></a>Breiman, L. (2001). Random forests. Machine Learning, 45(1), 5-32.</span>
+<span id="cb23-404"><a href="#cb23-404" aria-hidden="true" tabindex="-1"></a>Bergstra, J. &amp; Bengio, Y. (2012). Random search for hyper-parameter optimization. JMLR, 13, 281-305.</span>
 <span id="cb23-405"><a href="#cb23-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-406"><a href="#cb23-406" aria-hidden="true" tabindex="-1"></a>Cover, T. &amp; Hart, P. (1967). Nearest neighbor pattern classification. IEEE TIT, 13(1), 21-27.</span>
+<span id="cb23-406"><a href="#cb23-406" aria-hidden="true" tabindex="-1"></a>Breiman, L. (2001). Random forests. Machine Learning, 45(1), 5-32.</span>
 <span id="cb23-407"><a href="#cb23-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-408"><a href="#cb23-408" aria-hidden="true" tabindex="-1"></a>Ioffe, S. &amp; Szegedy, C. (2015). Batch normalization: Accelerating deep network training by reducing internal covariate shift. ICML.</span>
+<span id="cb23-408"><a href="#cb23-408" aria-hidden="true" tabindex="-1"></a>Cover, T. &amp; Hart, P. (1967). Nearest neighbor pattern classification. IEEE TIT, 13(1), 21-27.</span>
+<span id="cb23-409"><a href="#cb23-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-410"><a href="#cb23-410" aria-hidden="true" tabindex="-1"></a>Ioffe, S. &amp; Szegedy, C. (2015). Batch normalization: Accelerating deep network training by reducing internal covariate shift. ICML.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

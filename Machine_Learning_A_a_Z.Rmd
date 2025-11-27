@@ -2,7 +2,7 @@
 title: "Machine Learning de A a Z"
 author:
   - name: "Dr. Fernando Machado Haesbaert"
-    affiliation: "Pesquisador em Ciência de Dados - EMBRAPA Pantanal"
+    affiliation: "Pesquisador em Ciência de Dados"
 title-block-style: default
 title-block-banner: false
 
