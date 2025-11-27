@@ -1,0 +1,396 @@
+---
+title: "Machine Learning de A a Z"
+author:
+  - name: "Dr. Fernando Machado Haesbaert"
+    affiliation: "Pesquisador em Ciência de Dados - EMBRAPA Pantanal"
+title-block-style: default
+title-block-banner: false
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    theme: cosmo
+    df-print: paged
+    code-fold: true
+    code-tools: true
+    highlight-style: github
+    smooth-scroll: true
+
+editor: visual
+bibliography: referencias.bib
+---
+
+Aprendizado de Máquina (`Machine Learning`) é a ciência que estuda algoritmos e modelos estatísticos que permitem aos computadores realizar tarefas específicas sem serem explicitamente programados para isso conceito definido por Arthur Samuel em 1959 [@ArthurSamuel59]. Esses sistemas aprendem a partir de dados, identificando padrões e fazendo previsões com base nesses dados.\
+O aprendizado de máquina é amplamente utilizado em diversas áreas, como reconhecimento de voz, visão computacional, recomendação de produtos, análise preditiva e muito mais. Existem diferentes tipos de aprendizado de máquina, incluindo aprendizado supervisionado, não supervisionado e por reforço, cada um com suas próprias técnicas e aplicações.\
+Este glossário abrange conceitos, termos, algoritmos e técnicas fundamentais em aprendizado de máquina, organizados de A a Z. Cada entrada inclui uma breve descrição, exemplos em R e referências para aprofundamento.
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+# Pacotes utilizados nos chunks
+pkgs <- c("nnet", "randomForest", "caret", "rpart", "rpart.plot", "SuperLearner", 
+          "FNN", "glmnet", "e1071", "xgboost", "recipes", "isotree", "keras", 
+          "mlr3tuning", "ReinforcementLearning", "scales")
+suppressPackageStartupMessages(lapply(pkgs, \(p) if (!requireNamespace(p, quietly = TRUE)) install.packages(p)))
+lapply(pkgs, library, character.only = TRUE)
+
+```
+
+# A
+
+## Accuracy (Acurácia)
+
+Métrica de avaliação para problemas de classificação, definida como a proporção de previsões corretas. Embora simples, costuma ser enganosa em bases desbalanceadas. A acurácia é calculada como: $$\text{Acurácia} = \frac{TP + TN}{TP + TN + FP + FN}$$ Onde:\
+$TP$ são verdadeiros positivos\
+$TN$ verdadeiros negativos\
+$FP$ falsos positivos\
+$FN$ falsos negativos
+
+### Exemplo: Cálculo da Acurácia em R
+
+```{r}
+matriz_confusao <- matrix(c(50, 2, 1, 47), nrow = 2, byrow = TRUE)
+colnames(matriz_confusao) <- c("Previsto Positivo", "Previsto Negativo")
+rownames(matriz_confusao) <- c("Real Positivo", "Real Negativo")
+# Visualizar a matriz de confusão 
+matriz_confusao |> as.data.frame() |> 
+  knitr::kable(col.names = c("Real/Previsto", "Previsto Positivo", "Previsto Negativo"),
+               caption = "Matriz de Confusão") |> 
+  kableExtra::kable_styling(full_width = FALSE)
+# Cálculo da Acurácia
+TP <- matriz_confusao[1, 1]
+TN <- matriz_confusao[2, 2]
+acuracia <- (TP + TN) / sum(matriz_confusao)
+cat("Acurácia:", percent(acuracia, accuracy = 0.01), "\n")
+```
+
+Veja mais detalhes em: [@kuhn13]
+
+## AdaBoost (Adaptive Boosting)
+
+Algoritmo de ensemble baseado em boosting sequencial. Modelos fracos são combinados com pesos adaptativos para reduzir o erro. Cada modelo subsequente foca nos erros do anterior, ajustando pesos das amostras, modelo proposto por [@freund97].
+
+### Exemplo: algoritmo AdaBoost, para classificar flores do conjunto de dados Iris.
+
+```{r}
+set.seed(123)
+# 1. Geração de Dados: Usaremos o conjunto de dados iris
+data(iris)
+# 2. Dividir em treino e teste
+id <- sample(1:nrow(iris), size = 0.7 * nrow(iris))
+treino <- iris[id, ]
+teste  <- iris[-id, ]
+# 3. Ajuste do Modelo AdaBoost
+# install.packages("adabag")
+library(adabag)
+modelo <- boosting(Species ~ ., data = treino)
+# 4. Avaliação
+previsoes <- predict.boosting(modelo, newdata = teste[, -5])
+# Correção: Garante que os níveis sejam idênticos
+previsoes_fator <- factor(previsoes$class, levels = levels(teste$Species))
+
+# 5. Matriz de Confusão no conjunto de teste
+confusao_df <- confusionMatrix(
+  data = previsoes_fator,      # Usando a previsão corrigida
+  reference = teste$Species   # Os valores reais
+)
+knitr::kable(
+  confusao_df$table,
+  caption = "Matriz de Confusão - AdaBoost"
+) |> 
+  kableExtra::kable_styling(full_width = FALSE)
+# 6. Cálculo da Acurácia
+acuracia <- sum(previsoes_fator == teste$Species) / nrow(teste)
+cat("Acurácia do AdaBoost no conjunto iris:", percent(acuracia, accuracy = 0.01), "\n")
+```
+
+Uma referência detalhada é: [@hastie09], este livro é considerado a bíblia do aprendizado de máquina e dedica um capítulo inteiro (Chapter 10: Boosting and Additive Trees) ao conceito de Boosting e ao AdaBoost, explicando-o de forma rigorosa e detalhada, com foco em sua base estatística e matemática.
+
+## Aglomerativo Hierarchical Clustering
+Família hierárquica de métodos de agrupamento que unem observações progressivamente. Começa com cada ponto como um cluster individual e funde os mais próximos iterativamente, formando uma árvore dendrograma de baixo para cima.  
+Critérios de ligação (single, complete, average) definem a distância entre clusters.  
+
+### Exemplo em R – clustering aglomerativo com hclust: 
+```{r}
+dist_matrix <- dist(iris[, -5]) 
+hc <- hclust(dist_matrix, method = "complete") 
+plot(hc) # Dendrograma
+```
+
+Veja o metodo contrário a esse , o [Divisive Hierarchical Clustering](#divisive_hierarchical_clustering).
+
+Vejam mais detalhes em [@Han23], onde o capítulo aborda sobre `Cluster Analysis` (Análise de Agrupamento) aborda a Agrupamento Hierárquico (Seção 8.3) e explica detalhadamente como o algoritmo aglomerativo (bottom-up) funciona, a construção do dendrograma e a diferença entre os critérios de ligação (single-link, complete-link e average-link).  
+
+## AIC – Akaike Information Criterion (Critério de Akaike)
+Índice de seleção de modelos usado amplamente em modelos estatísticos e regressões generalizadas. Baseia-se na teoria da informação, penalizando a complexidade do modelo para evitar overfitting.  
+Calculado como: 
+$$\text{AIC} = 2k - 2\ln(L)$$  
+Onde: $k$ é o número de parâmetros do modelo e $L$ é a verossimilhança máxima do modelo.  
+Modelos com menor AIC são preferidos.  
+
+### Exemplo: comparação de modelos lineares com AIC: 
+```{r}
+# Repare que removi os sinais de "+" que indicam quebra de linha no console
+df <- tibble( 
+  x1 = rnorm(100, mean = 5, sd = 2),
+  # Aqui o tibble permite chamar o x1 criado na linha acima
+  x2 = x1 + rnorm(100, mean = 3, sd = 2), 
+  x3 = x2 + rnorm(100, mean = 3, sd = 2)
+) |> 
+  mutate(
+    y = 3 + 2*x1 - 1.5*x2 + 0.5*x3 + rnorm(100, mean=0, sd=2)
+  )
+cor(df)
+model1 <- lm(y ~ x1 + x2, data = df) 
+model2 <- lm(y ~ x1 + x2 + x3, data = df) 
+aic_values <- AIC(model1, model2) 
+print(aic_values)
+```
+
+
+
+## Artificial Neural Networks (ANNs)
+
+São sistemas de computação inspirados na arquitetura de neurônios biológicos, formalizados como composições de funções não-lineares $θ(𝐖𝐱 + 𝐛)$, onde $𝐖$ denota matrizes de pesos sinápticos, $θ$ é uma função de ativação (ReLU, sigmóide, tanh) e $b$ viés (bias) . A capacidade de aproximadores universais (HORNIK et al., 1989) garante que ANNs com uma camada oculta suficientemente larga podem modelar qualquer função contínua em domínio compacto.\
+Referência: [@hornik89].
+
+### Exemplo em R: Rede feed-forward para regressão com pacote `{nnet}`
+
+A rede feed-forward é um tipo de rede neural artificial onde as conexões entre os nós não formam ciclos. Ela é amplamente utilizada para tarefas de regressão e classificação. No R, o pacote `{nnet}` oferece uma maneira simples de implementar redes feed-forward.
+
+```{r}
+set.seed(123)
+# 1. Geração de Dados NÃO-LINEARES: Redes neurais brilham onde a linearidade falha. 
+# Vamos criar uma função seno com ruído.
+N <- 500
+x <- runif(N, 0, 10) # Valores entre 0 e 10
+y <- sin(x) + rnorm(N, sd = 0.2) # Seno + ruído
+dados <- data.frame(x = x, y = y)
+
+# 2. Separação Treino/Teste (Boas práticas)
+indices <- sample(1:N, size = 0.8 * N)
+treino <- dados[indices, ]
+teste  <- dados[-indices, ]
+
+# 3. Ajuste do Modelo (Regressão)
+# size: neurônios na camada oculta
+# linout = TRUE: essencial para regressão (saída linear, não sigmoide)
+modelo_ann <- nnet(y ~ x, 
+                   data = treino, 
+                   size = 10, 
+                   linout = TRUE, 
+                   decay = 0.001, 
+                   maxit = 1000, 
+                   trace = FALSE) # trace=FALSE limpa o console
+
+# 4. Avaliação
+previsoes <- predict(modelo_ann, teste)
+
+# Cálculo do Erro Quadrático Médio (MSE)
+mse <- mean((teste$y - previsoes)^2)
+
+cat("Erro Quadrático Médio (MSE) no teste:", round(mse, 4), "\n")
+
+# Visualização 
+# 1. Preparação: Adicionar as previsões ao data frame de teste
+dados_plot <- teste %>%
+  mutate(predito = previsoes)
+
+# 2. Visualização
+ggplot(dados_plot, aes(x = x)) +
+  # Camada dos dados REAIS
+  # Note que definimos color="Real" DENTRO do aes() para criar a legenda
+  geom_point(aes(y = y, color = "Real", shape = "Real"), 
+             size = 2, alpha = 0.7) +
+  # Camada dos dados PREVISTOS
+  geom_point(aes(y = predito, color = "Previsto", shape = "Previsto"), 
+             size = 3, stroke = 1.2) +
+  # Personalização manual para imitar o estilo do R Base (cinza/vermelho e círculo/x)
+  scale_color_manual(name = "Legenda", 
+                     values = c("Real" = "gray", "Previsto" = "red")) +
+  scale_shape_manual(name = "Legenda", 
+                     values = c("Real" = 19, "Previsto" = 4)) +
+  # Títulos e Tema
+  labs(title = "ANN: Ajuste a Função Seno",
+       subtitle = "Comparação entre dados reais e aproximação da rede neural",
+       y = "Valor de Y",
+       x = "Valor de X") +
+  theme_minimal()
+```
+
+# B
+
+## Bagging (Bootstrap Aggregating)
+
+Proposto por Breiman (1996), reduz variância ao treinar modelos em múltiplas amostras bootstrap e agregar predições por votação majoritária (classificação) ou média (regressão). A de-correlação entre árvores é crítica para ganhos de precisão. Exemplo em R – floresta aleatória com randomForest: r Copy library(randomForest) rf \<- randomForest(Species \~ ., data = iris, ntree = 1000, importance = TRUE) print(rf\$err.rate\[1000, "OOB"\]) Referência: Breiman, L. (1996). Bagging predictors. Machine Learning, 24(2), 123-140.
+
+# C
+
+## Cross-Validation (CV)
+
+Estimador de erro de generalização com viés–variância controlado. O k-fold CV particiona os dados em k subconjuntos mutuamente exclusivos; cada partição é usada uma vez como teste. O nested CV é obrigatório quando há sintonia de hiper-parâmetros para evitar otimismo de desempenho (Cawley & Talbot, 2010). Exemplo em R – validação cruzada aninhada com caret: r Copy library(caret) tc \<- trainControl(method = "repeatedcv", number = 10, repeats = 5, search = "grid") fit \<- train(Class \~ ., data = Sonar, method = "svmRadial", tuneLength = 15, trControl = tc) Referência: Cawley, G. C. & Talbot, N. L. C. (2010). On over-fitting in model selection and subsequent selection bias in performance evaluation. JMLR, 11, 2079-2107.
+
+# D
+
+## Decision Trees (Árvores de Decisão)
+
+Modelos simbólicos que particionam recursivamente o espaço de preditores via medidas de impureza (Gini, entropia ou erro de classificação). A complexidade é controlada por poda cost-complexity (cp) ou restrições de profundidade. Exemplo em R – árvore CART com rpart: r Copy library(rpart) arvore \<- rpart(Kyphosis \~ Age + Number + Start, data = kyphosis, method = "class", cp = 0.01) rpart.plot::rpart.plot(arvore)
+
+## Divisive Hierarchical Clustering{#divisive_hierarchical_clustering}
+Um método de agrupamento hierárquico divisivo emprega uma estratégia de cima para baixo. Ele começa colocando todos os objetos em um cluster, que é a raiz da hierarquia. Em seguida, divide o cluster raiz em vários subclusters menores e particiona recursivamente esses clusters em clusters menores. O processo de particionamento continua até que cada objeto esteja em seu próprio cluster ou até que um critério de parada seja atendido (por exemplo, número desejado de clusters ou distância mínima entre clusters).  
+
+### Exemplo em R – clustering divisivo com diana
+```{r}
+library(cluster) 
+data(iris) 
+div_clust <- diana(iris[, -5]) 
+plot(div_clust) # Dendrograma
+```
+
+
+
+# E
+
+## Ensemble Learning
+
+Princípio de combinar preditores fracos para formar um preditor forte. Além de bagging e boosting, stacking (Wolpert, 1992) usa um meta-modelo para ponderar especialistas de base. Divergência entre componentes é essencial (Kuncheva & Whitaker, 2003). Exemplo em R – stacking com SuperLearner: r Copy library(SuperLearner) SL.library \<- c("SL.glm", "SL.ranger", "SL.xgboost") fitSL \<- SuperLearner(Y = y, X = X, SL.library = SL.library, family = binomial())
+
+# F
+
+## Feature Scaling
+
+Muitos algoritmos (SVM, redes neurais, k-NN) são sensíveis à magnitude das variáveis. A padronização z-score (μ = 0, σ = 1) ou normalização min-max \[0, 1\] garante convergência numérica e interpretabilidade de penalidades regulares. Exemplo em R – pipeline com recipes: r Copy library(recipes) receita \<- recipe(y \~ ., data = df) %\>% step_normalize(all_numeric_predictors()) %\>% prep() df_scaled \<- bake(receita, new_data = NULL)
+
+# G
+
+## Gradient Descent (GD)
+
+Algoritmo de otimização de primeira ordem que atualiza parâmetros na direção oposta ao gradiente da função de perda. GD estocástico (SGD) reduz custo computacional por amostras mini-batch; adaptativos (Adam, RMSprop) ajustam taxas de aprendizado por momentos. Exemplo em R – GD manual para regressão linear: r Copy gd \<- function(X, y, lr = 0.01, epochs = 1000) { beta \<- rep(0, ncol(X)) for(i in 1:epochs) { grad \<- -2 \* t(X) %*% (y - X %*% beta) / nrow(X) beta \<- beta - lr \* grad } beta }
+
+# H
+
+## Hyperparameter Tuning
+
+Espaço de configurações externas ao modelo (número de vizinhos, C de SVM, profundidade de árvore) é otimizado via busca em grade, aleatória (Bergstra & Bengio, 2012) ou bayesiana (TPE, Gaussian Process). Exemplo em R – bayesiano com mlr3tuning: r Copy library(mlr3tuning) task \<- tsk("sonar") learner \<- lrn("classif.svm", type = "C-classification", kernel = "radial") search_space \<- ps(C = p_dbl(1e-1, 1e3), sigma = p_dbl(1e-4, 1)) tuner \<- tnr("mbo", n_evals = 30)
+
+# I
+
+## Instance-Based Learning
+
+Família de algoritmos que adiam generalização até o momento da predição, armazenando exemplos (k-NN, kernel regression). A complexidade de predição é O(n), exigindo estruturas de indexação (KD-tree, ball-tree) ou projeções de baixa dimensionalidade. Exemplo em R – k-NN com FNN: r Copy library(FNN) knn_pred \<- knn.reg(train = treino\[, -1\], test = teste\[, -1\], y = treino\$y, k = 5)
+
+# J
+
+## Jaccard Index
+
+Medida de similaridade de conjuntos J(A,B) = \|A ∩ B\| / \|A ∪ B\|. Útil em dados binários (presença/ausência) ou comunidades em grafos. Exemplo em R: r Copy jaccard \<- function(a, b) { length(intersect(a, b)) / length(union(a, b)) }
+
+# K
+
+## K-Nearest Neighbors (KNN)
+
+Classificador não-paramétrico que atribui classe majoritária entre os k vizinhos mais próximos. A escolha de k via CV balancea viés–variância; distâncias ponderadas (IDW) reduzem influência de vizinhos distantes. Exemplo em R – tuning de k: r Copy library(caret) fit \<- train(Class \~ ., data = Sonar, method = "knn", tuneGrid = data.frame(k = seq(1, 25, by = 2)))
+
+# L
+
+## Logistic Regression
+
+Modelo linear generalizado com função de ligação logit, garantindo probabilidades em \[0, 1\]. A interpretação via odds-ratio é clássica em epidemiologia. Regularização L1 (lasso) permite seleção de variáveis. Exemplo em R – regressão logística com glmnet: r Copy library(glmnet) cvfit \<- cv.glmnet(x = x, y = y, family = "binomial", alpha = 1) coef(cvfit, s = "lambda.min")
+
+# M
+
+## Model Overfitting
+
+Situação emindo a função de risco empírico ≪ risco verdadeiro, indicando captura de ruído. Diagnóstico via curva de validação (training × validation loss) ou complexidade VC. Soluções: penalização, early stopping, aumento de dados. Referência: Vapnik, V. (1998). Statistical Learning Theory. Wiley.
+
+# N
+
+## Normalization
+
+Transformação que reescala variáveis para intervalo fixo, comum em redes neurais. A normalização por lote (batch norm) acelera convergência reduzindo covariância interna (Ioffe & Szegedy, 2015). Exemplo em R – batch norm em keras: r Copy library(keras) model %\>% layer_batch_normalization()
+
+# O
+
+## Outliers
+
+Observações que violam pressuposto de distribuição contínua ou homocedasticidade. Detectados via distância de Mahalanobis, LOF ou Isolation Forest. Em modelos lineares, leverage e Cook’s D quantificam influência. Exemplo em R: r Copy library(isotree) iso \<- isolation.forest(df, ntrees = 500) scores \<- predict(iso, df)
+
+# P
+
+## Principal Component Analysis (PCA)
+
+Decomposição ortogonal que maximiza variância projetada, equivalente à decomposição em valores singulares (SVD) da matriz centrada. PCA é usada para visualização, ruído filtrado e redução de dimensionalidade antes de algoritmos pesados. Exemplo em R: r Copy pca \<- prcomp(df, center = TRUE, scale. = TRUE) biplot(pca)
+
+# Q
+
+## Q-Learning
+
+Algoritmo de aprendizado por reforço off-policy que estima função Q\*(s,a) via atualização de Bellman. A convergência é garantida sob visitação infinita de pares (s,a) com taxa de aprendizado decrescente. Exemplo em R – pacote ReinforcementLearning: r Copy library(ReinforcementLearning) data("gridworld") model \<- ReinforcementLearning(data = gridworld, s = "state", a = "action", r = "reward", s_new = "next_state")
+
+# R
+
+## Regularization
+
+Técnica que adiciona penalidade Ω(β) à função de perda, impondo trade-off viés–variância. Ridge (L2) encolhe coeficientes, lasso (L1) promove esparsidade, elastic-net combina ambas. Exemplo em R – elastic-net com glmnet: r Copy cvfit \<- cv.glmnet(x, y, alpha = 0.5) \# 0.5 = elastic-net
+
+# S
+
+## Support Vector Machines (SVM)
+
+Classificador de margem máxima que resolve problema de otimização quadrática convexo. O kernel trick permite espaços de Hilbert de alta dimensão sem custo computacional explícito. Exemplo em R – SVM radial com e1071: r Copy library(e1071) fit \<- svm(Class \~ ., data = treino, kernel = "radial", cost = 10, gamma = 0.1)
+
+# T
+
+## Training Set
+
+Conjunto de dados usado para estimar parâmetros do modelo. Deve ser representativo da população; técnicas de amostragem estratificada preservam proporções de classe. O tamanho ideal depende da taxa de cobertura do espaço de características (Cover & Hart, 1967).
+
+# U
+
+## Underfitting
+
+Modelo com capacidade insuficiente (alto viés) não captura estrutura dos dados. Indicado por erro de treino elevado. Soluções: aumentar complexidade, adicionar features, reduzir regularização.
+
+# V
+
+## Validation Set
+
+Dados separados do treino para ajuste de hiper-parâmetros, evitando vazamento de informação. Em datasets pequenos, cross-validation interno é preferível.
+
+# W
+
+## Weight Initialization
+
+Valores iniciais influenciam convergência e qualidade de mínimo. Xavier/Glorot idealiza variância 2/(fan_in + fan_out) para sigmóides; He inicializa com 2/fan_in para ReLU. Exemplo em R – inicialização He no keras: r Copy layer_dense(units = 128, activation = "relu", kernel_initializer = "he_normal")
+
+# X
+
+## XGBoost
+
+Implementação escalonável de gradient boosting com稀疏数据 (sparsity-aware), regularização L1/L2 em árvores, e paralelização por特征分块. Domina competições tabulares. Exemplo em R: r Copy library(xgboost) dtrain \<- xgb.DMatrix(data = as.matrix(treino\[, -1\]), label = treino\$label) param \<- list(max_depth = 6, eta = 0.05, subsample = 0.8, colsample_bytree = 0.8, objective = "binary:logistic") bst \<- xgb.train(param, dtrain, nrounds = 400, watchlist = list(train = dtrain), early_stopping_rounds = 10)
+
+# Y
+
+## Y-Axis
+
+Nos gráficos de curvas de aprendizado, representa métrica de desempenho (acurácia, AUC, RMSE) ou erro empírico. A análise de gap entre treino e validação revela overfitting/underfitting.
+
+# Z
+
+## Z-Score
+
+Escore padronizado z = (x − μ)/σ, indicando desvios em unidades de desvio-padrão. Utilizado para detecção de outliers (\|z\| \> 3) e normalização de features. Exemplo em R: r Copy z \<- scale(df\$x)
+
+Referências gerais
+
+Bergstra, J. & Bengio, Y. (2012). Random search for hyper-parameter optimization. JMLR, 13, 281-305.
+
+Breiman, L. (2001). Random forests. Machine Learning, 45(1), 5-32.
+
+Cover, T. & Hart, P. (1967). Nearest neighbor pattern classification. IEEE TIT, 13(1), 21-27.
+
+Ioffe, S. & Szegedy, C. (2015). Batch normalization: Accelerating deep network training by reducing internal covariate shift. ICML.
